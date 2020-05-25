@@ -1,0 +1,17 @@
+// Place all the styles related to the user/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top_image{
+    height: 900px;
+    width: 800px;
+    background-image: image-url("top.jpg"); 
+    background-size:cover;
+    float: left;
+}
+
+.site_title{
+    font-size: 50px;
+    padding-top: 120px;
+    padding-left: 850px;
+}

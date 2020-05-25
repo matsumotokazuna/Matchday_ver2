@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>user</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'user', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'user', 'data-turbolinks-track': 'reload' %>
+  </head>
+<body>
+<% content_for :content do %>
+  <%= render 'layouts/user/header' %> 
+  <div class="margin"></div>
+  <%= yield %>
+  <%= render 'layouts/user/footer' %>
+<% end %>
+<%= render template: "layouts/application" %>
+</body>
+</html>
