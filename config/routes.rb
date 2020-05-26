@@ -15,6 +15,13 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about'
     resources :users, only: [:index, :show]
+    get '/settings' => 'settings#index'
+    get '/settings/profile' => 'settings#settings_profile'
+    patch '/settings/profile' => 'settings#update_profile'
+    get '/settings/email' => 'settings#settings_email'
+    patch '/settings/email' => 'settings#update_email'
+    get '/settings/withdraw' => 'settings#settings_withdraw'
+    patch '/settings/withdraw' => 'settings#update_withdraw'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
