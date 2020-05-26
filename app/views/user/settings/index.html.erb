@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>マイページ</h2>
+    </div>
+    <div class="col-sm-offset-4 col-sm-4">
+        <%# プロフィール写真 %>
+            <%= attachment_image_tag @user, :user_image, :fill, 400, 500, fallback: "no_image.jpg" %>
+        <%# ニックネーム %>
+            <div class="setting_name">
+                <%= @user.name %>
+            </div>
+        <%# 生年月日から年齢を計算 %>
+            <div class="setting_prifile">
+                <% birthdate = @user.birth_date%>
+                <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+        <%# 都道府県 %>
+                <%= @user.prefecture_cd %>
+            </div>
+    </div>
+    <div class="col-sm-offset-4 col-sm-4">
+        <table class="table">
+            <tr>
+                <th>職種</th>
+                <td><%= @user.job_cd %></td>
+            </tr>
+            <tr>
+                <th>身長</th>
+                <td><%= @user.height_cd %></td>
+            </tr>
+            <tr>
+                <th>年収</th>
+                <td><%= @user.income_cd %></td>
+            </tr>
+            <tr>
+                <th>婚姻歴</th>
+                <td><%= @user.marriage_history_cd %></td>
+            </tr>
+            <tr>
+                <th>結婚に対する意思</th>
+                <td><%= @user.marriage_purpose_cd %></td>
+            </tr>
+            <tr>
+                <th>同居人</th>
+                <td><%= @user.housemate_cd %></td>
+            </tr>
+            <tr>
+                <th>休日</th>
+                <td><%= @user.holiday_cd %></td>
+            </tr>
+            <tr>
+                <th>お酒</th>
+                <td><%= @user.alcohol_cd %></td>
+            </tr>
+            <tr>
+                <th>タバコ</th>
+                <td><%= @user.cigaret_cd %></td>
+            </tr>
+            <tr>
+                <th>自己紹介</th>
+                <td><%= @user.introduction %></td>
+            </tr>
+        </table>
+    <%= link_to '編集',settings_profile_path, class: "btn btn-primary btn-block" %>
+    </div>
+    <div class="col-sm-offset-3 col-sm-6">
+        <div class="setting_menu">
+            <%= link_to 'メールアドレス変更',settings_email_path, class: "btn btn-default btn-block" %>
+            <%= link_to 'パスワード変更',edit_user_password_path, class: "btn btn-default btn-block" %>
+            <%= link_to"ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-default btn-block" %>
+            <%= link_to '退会',settings_withdraw_path, class: "btn btn-default btn-block" %>
+        </div>
+    </div>
+    </div>
+</div>
