@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>会員一覧</h2>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="active">
+                <th>会員id</th>
+                <th>ニックネーム</th>
+                <th>性別</th>
+                <th>年齢</th>
+                <th>都道府県</th>
+                <th>退会日</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |user| %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.name %></td>
+                <td><%= user.gender_cd %></td>
+                <td>
+                    <% birthdate = user.birth_date%>
+                    <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                </td>
+                <td><%= user.prefecture_cd %></td>
+                <td><%= user.disabled_at %></td>
+                <td><%= link_to '詳細', admin_user_path(user.id), class:'btn btn-primary' %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    </div>
+</div>

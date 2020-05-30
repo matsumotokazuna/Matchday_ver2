@@ -5,7 +5,7 @@
     </div>
     <%= form_for(@user, url: settings_email_path) do |f| %>
     <div class="col-sm-5">
-        <table class="table">
+        <table class="table table-border-less">
             <tr>
                 <th><%= f.label :メールアドレス %></th>
                 <td><%= f.email_field :email %></td>

@@ -3,9 +3,9 @@
     <div class="page_title">
     <h2>プロフィール編集</h2>
     </div>
-    <%= form_for(@user, url: settings_profile_path) do |f| %>
+    <%= form_for(@user, url: admin_user_path(@user.id)) do |f| %>
     <div class="col-sm-5">
-        <table class="table table-border-less">
+        <table class="table">
             <tr>
                 <th><%= f.label :写真 %></th>
                 <td><%= f.attachment_field :user_image %></td>
@@ -13,6 +13,10 @@
             <tr>
                 <th><%= f.label :ニックネーム %></th>
                 <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :メールアドレス %></th>
+                <td><%= f.email_field :email %></td>
             </tr>
             <tr>
                 <th><%= f.label :生年月日 %></th>
@@ -61,6 +65,10 @@
             <tr>
                 <th><%= f.label :自己紹介 %></th>
                 <td><%= f.text_area :introduction %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :退会日時 %></th>
+                <td><%= f.date_select :disabled_at, use_month_numbers: true %></td>
             </tr>
         </table>
         <%= f.submit "編集", class:"btn btn-primary btn-block" %>
