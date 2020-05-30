@@ -24,7 +24,8 @@ Rails.application.routes.draw do
     patch '/settings/email' => 'settings#update_email'
     get '/settings/withdraw' => 'settings#settings_withdraw'
     patch '/settings/withdraw' => 'settings#update_withdraw'
-    resources :actions, only: [:create, :update]
+    post '/users/:id' => 'users#create_action', as:'create_action'
+    patch '/users/:id' => 'users#update_action', as:'update_action'
   end
 
   namespace :admin do
