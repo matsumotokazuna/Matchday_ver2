@@ -5,7 +5,7 @@
     </div>
     <%= form_for(@user, url: settings_withdraw_path) do |f| %>
     <div class="col-sm-5">
-        <table class="table">
+        <table class="table table-border-less">
             <tr>
                 <th>本当に退会しますか？</th>
                 <td><%= f.hidden_field :disabled_at, value:DateTime.now %></td>

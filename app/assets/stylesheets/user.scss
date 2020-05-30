@@ -26,6 +26,12 @@
     color: white;
 }
 
-table, th, td {
+.table-border-less table {
+    border-style:none!important;
+}
+.table-border-less th {
+    border-style:none!important;
+}
+.table-border-less td {
     border-style:none!important;
 }
