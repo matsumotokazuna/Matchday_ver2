@@ -16,31 +16,16 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-header {
+.user-header {
     padding: 20px 4% 15px;
     width: 100%;
     background-color: #FA6A8D;
 }
 
-.margin{
-    height: 20px;
+.user-header a{
+    color: white;
 }
 
 table, th, td {
     border-style:none!important;
-}
-
-.page_title{
-    margin-bottom: 50px;
-}
-
-.like_btn{
-    background-color: #FA6A8D;
-    border-color: #E5EAEE;
-    border-radius: 20px;
-    width: 400px;
-    height: 65px;
-    color: white;
-    font-size: 20px;
-    margin-top: 20px;
 }

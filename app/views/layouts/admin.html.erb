@@ -7,8 +7,11 @@
     <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
   </head>
 <body>
-<% content_for :content do %>  
+<% content_for :content do %>
+  <%= render 'layouts/admin/header' %> 
+  <div class="margin"></div>
   <%= yield %>
+  <%= render 'layouts/admin/footer' %>
 <% end %>
 <%= render template: "layouts/application" %>
 </body>

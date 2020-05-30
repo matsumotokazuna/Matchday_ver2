@@ -24,6 +24,24 @@
     font-family: Monotype Corsiva;
 }
 
-a{
-    color: white;
+.margin{
+    height: 20px;
+}
+
+.page_title{
+    margin-bottom: 50px;
+}
+
+.top_image{
+    height: 900px;
+    width: 800px;
+    background-image: image-url("top.jpg"); 
+    background-size:cover;
+    float: left;
+}
+
+.site_title{
+    font-size: 50px;
+    padding-top: 120px;
+    padding-left: 850px;
 }
