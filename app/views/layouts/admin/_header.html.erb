@@ -1,0 +1,29 @@
+<header class="admin-header">
+<div class="container">
+    <div class="row">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <% if admin_signed_in? %>
+                        <a href="#" class="navbar-brand">Matchday</a>
+                    <% else %>
+                        <a href="/admin" class="navbar-brand">Matchday</a>
+                    <% end %>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarEexample">
+                    <ul class="nav navbar-nav navbar-right">
+                    <% if admin_signed_in? %>
+                        <li><a href="#">会員一覧</a></li>
+                        <li><a href="#">活動一覧</a></li>
+                        <li><a href="#">店舗管理</a></li>
+                        <li><%= link_to"ログアウト", destroy_admin_session_path, method: :delete %></li>
+                    <% else %>
+                        <li><a href="/admin/admins/sign_in">ログイン</a></li>
+                    <% end %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+</header>

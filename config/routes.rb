@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: {
-    sessions: 'admin/admins/sessions',
-    passwords: 'admin/admins/passwords',
-    registrations: 'asmin/admins/registrations'
-  }
-
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
   devise_for :users, controllers: {
     sessions: 'user/users/sessions',
     passwords: 'user/users/passwords',
     registrations: 'user/users/registrations',
   }
+
+  scope '/admin' do
+    devise_for :admins, controllers: {
+      sessions: 'admin/admins/sessions',
+    }
+  end
 
   scope module: :user do
     root to: 'homes#top'
@@ -24,5 +26,9 @@ Rails.application.routes.draw do
     patch '/settings/withdraw' => 'settings#update_withdraw'
     resources :actions, only: [:create, :update]
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :admin do
+    root to: 'homes#top'
+  end
+
 end
