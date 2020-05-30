@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_063107) do
+ActiveRecord::Schema.define(version: 2020_05_26_165053) do
+
+  create_table "actions", force: :cascade do |t|
+    t.integer "male_user_id"
+    t.integer "female_user_id"
+    t.datetime "male_matching_at"
+    t.datetime "female_matching_at"
+    t.datetime "matching_at"
+    t.date "matching_date"
+    t.integer "matching_time_cd"
+    t.integer "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false

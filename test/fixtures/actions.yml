@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  male_user_id: 1
+  female_user_id: 1
+  male_matching_at: 2020-05-26 16:50:53
+  female_matching_at: 2020-05-26 16:50:53
+  matching_at: 2020-05-26 16:50:53
+  matching_date: 2020-05-26
+  matching_time_cd: 1
+  shop_id: 1
+
+two:
+  male_user_id: 1
+  female_user_id: 1
+  male_matching_at: 2020-05-26 16:50:53
+  female_matching_at: 2020-05-26 16:50:53
+  matching_at: 2020-05-26 16:50:53
+  matching_date: 2020-05-26
+  matching_time_cd: 1
+  shop_id: 1
