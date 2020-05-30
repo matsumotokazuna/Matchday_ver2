@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     patch '/settings/email' => 'settings#update_email'
     get '/settings/withdraw' => 'settings#settings_withdraw'
     patch '/settings/withdraw' => 'settings#update_withdraw'
+    resources :actions, only: [:create, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

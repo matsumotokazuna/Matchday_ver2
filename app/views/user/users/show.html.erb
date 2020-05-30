@@ -63,5 +63,38 @@
             </tr>
         </table>
     </div>
+    <div class="col-sm-offset-4 col-sm-4">
+        <%# actionが未作成の場合 %>
+        <% if @action.id == nil %>
+            <%= form_for(@action, url: actions_path) do |f| %>
+                <%# ログインユーザが男性の場合 %>
+                <% if current_user.gender_cd == "男性" %>
+                    <%= f.hidden_field :male_user_id, value:current_user.id %>
+                    <%= f.hidden_field :female_user_id, value:@user.id %>
+                    <%= f.hidden_field :male_matching_at, value:DateTime.now %>
+                <%# ログインユーザが女性の場合 %>
+                <% else %>
+                    <%= f.hidden_field :male_user_id, value:@user.id %>
+                    <%= f.hidden_field :female_user_id, value:current_user.id %>
+                    <%= f.hidden_field :female_matching_at, value:DateTime.now %>
+                <% end %>
+                <%= f.submit 'いいね', class: 'like_btn' %>
+            <% end %>
+        <%# actionが既に存在する場合 %>
+        <% else %>
+            <%= form_for(@action, url: action_path(@action.id)) do |f| %>
+                <%# ログインユーザが男性の場合 %>
+                <% if current_user.gender_cd == "男性" %>
+                    <%= f.hidden_field :male_matching_at, value:DateTime.now %>
+                    <%= f.hidden_field :matching_at, value:DateTime.now %>
+                <%# ログインユーザが女性の場合 %>
+                <% else %>
+                    <%= f.hidden_field :female_matching_at, value:DateTime.now %>
+                    <%= f.hidden_field :matching_at, value:DateTime.now %>
+                <% end %>
+                <%= f.submit 'お相手から', class: 'like_btn' %>
+            <% end %>
+        <% end %>
+    </div>
     </div>
 </div>
