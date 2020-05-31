@@ -2,28 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.user_box{
-    float: left;
-    padding-bottom: 30px;
-}
-
-.user_box:not(:nth-child(4n+1)){
-    padding-right: 40px;
-
-}
-
-.user_name{
-    font-size: 20px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.user_profile{
-    font-size: 15px;
-    margin-top: 5px;
-    text-align: center;
-}
-
 .like_btn{
     background-color: #FA6A8D;
     border-color: #E5EAEE;
@@ -33,4 +11,19 @@
     color: white;
     font-size: 20px;
     margin-top: 20px;
+}
+
+.lile_btn_gray{
+    background-color: #a9a9a9;
+    border-color: #E5EAEE;
+    border-radius: 20px;
+    width: 400px;
+    height: 65px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.lile_font_gray{
+    color: white;
+    font-size: 20px;
 }
