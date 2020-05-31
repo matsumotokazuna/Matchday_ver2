@@ -38,22 +38,34 @@
 
 .user_box{
     float: left;
-    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border: 1px solid;
+    background-color: white;
+    border-color: #EEEDED;
 }
 
 .user_box:not(:nth-child(4n+1)){
-    padding-right: 40px;
+    margin-right: 40px;
 
 }
 
-.user_name{
+.user_male_name{
     font-size: 20px;
     margin-top: 20px;
     text-align: center;
+    color: #386EFF;
+}
+
+.user_female_name{
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+    color: #FA6A8D;
 }
 
 .user_profile{
     font-size: 15px;
     margin-top: 5px;
+    padding-bottom: 10px;
     text-align: center;
 }

@@ -7,12 +7,13 @@
     <%= javascript_include_tag 'user', 'data-turbolinks-track': 'reload' %>
   </head>
 <body>
+<div class="wrapper">
 <% content_for :content do %>
-  <%= render 'layouts/user/header' %> 
-  <div class="margin"></div>
+  <%= render 'layouts/user/header' %>
   <%= yield %>
   <%= render 'layouts/user/footer' %>
 <% end %>
 <%= render template: "layouts/application" %>
+</div>
 </body>
 </html>
