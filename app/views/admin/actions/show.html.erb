@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>活動詳細</h2>
+    </div>
+    <div>
+    <table class="table">
+        <tr>
+            <th class="active col-sm-2"><th>
+            <td class="col-sm-5"><%= attachment_image_tag @action.male_user, :user_image, :fill, 300, 400, fallback: "no_image.jpg", size:'300x400' %></td>
+            <td class="col-sm-5"><%= attachment_image_tag @action.female_user, :user_image, :fill, 300, 400, fallback: "no_image.jpg", size:'300x400' %></td>
+        </tr>
+        <tr>
+            <th class="active">会員id<th>
+            <td><%= @action.male_user.id %></td>
+            <td><%= @action.female_user.id %></td>
+        </tr>
+        <tr>
+            <th class="active">ニックネーム<th>
+            <td><%= @action.male_user.name %></td>
+            <td><%= @action.female_user.name %></td>
+        </tr>
+        <tr>
+            <th class="active">性別<th>
+            <td><%= @action.male_user.gender_cd %></td>
+            <td><%= @action.female_user.gender_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">年齢<th>
+            <td>
+                <% birthdate = @action.male_user.birth_date%>
+                <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+            </td>
+            <td>
+                <% birthdate = @action.female_user.birth_date%>
+                <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+            </td>
+        </tr>
+        <tr>
+            <th class="active">都道府県<th>
+            <td><%= @action.male_user.prefecture_cd %></td>
+            <td><%= @action.female_user.prefecture_cd %></td>
+        </tr>
+    </table>
+    </div>
+    <div>
+    <table class="table">
+        <tr>
+            <th class="active col-sm-2">いいね送信日時<th>
+            <td class="col-sm-5"><%= @action.male_matching_at %></td>
+            <td class="col-sm-5"><%= @action.female_matching_at %></td>
+        </tr>
+    </table>
+    </div>
+    <div>
+    <table class="table">
+        <tr>
+            <th class="active col-sm-2">いいね成立日時<th>
+            <td class="col-sm-10"><%= @action.matching_at %></td>
+        </tr>
+    </table>
+    </div>
+    </div>
+</div>
