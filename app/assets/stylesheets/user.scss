@@ -35,3 +35,25 @@
 .table-border-less td {
     border-style:none!important;
 }
+
+.user_box{
+    float: left;
+    padding-bottom: 30px;
+}
+
+.user_box:not(:nth-child(4n+1)){
+    padding-right: 40px;
+
+}
+
+.user_name{
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.user_profile{
+    font-size: 15px;
+    margin-top: 5px;
+    text-align: center;
+}

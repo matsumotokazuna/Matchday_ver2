@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     patch '/settings/withdraw' => 'settings#update_withdraw'
     post '/users/:id' => 'users#create_action', as:'create_action'
     patch '/users/:id' => 'users#update_action', as:'update_action'
+    get	'/actions/from_partner' => 'actions#from_partner'
+    get	'/actions/from_me' => 'actions#from_me'
   end
 
   namespace :admin do
