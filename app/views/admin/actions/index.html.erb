@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>活動一覧</h2>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="active">
+                <th>活動ステータス</th>
+                <th>男性会員id</th>
+                <th>男性ニックネーム</th>
+                <th>女性会員id</th>
+                <th>女性会員ニックネーム</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @actions.each do |action| %>
+            <tr>
+                <td>
+                    <% if action.male_matching_at != nil && action.female_matching_at == nil %>
+                        男性いいね送信
+                    <% elsif action.male_matching_at == nil && action.female_matching_at != nil %>
+                        女性いいね送信
+                    <% elsif action.matching_at != nil %>
+                        いいね成立
+                    <% else %>
+                    <% end %>
+                </td>
+                <td><%= action.male_user.id %></td>
+                <td><%= action.male_user.name %></td>
+                <td><%= action.female_user.id %></td>
+                <td><%= action.female_user.name %></td>
+                <td><%= link_to '詳細', admin_action_path(action.id), class:'btn btn-primary' %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    </div>
+</div>
