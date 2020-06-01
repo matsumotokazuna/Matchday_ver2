@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>店舗登録</h2>
+    </div>
+    <%= form_for(@shop, url: admin_shops_path) do |f| %>
+    <div class="col-sm-5">
+        <table class="table">
+            <tr>
+                <th><%= f.label :店舗名 %></th>
+                <td><%= f.text_field :shop_name %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :郵便番号 %></th>
+                <td><%= f.text_field :postal_code %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :都道府県 %></th>
+                <td><%= f.select :prefecture_cd, Shop.prefecture_cds.keys %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :市区町村 %></th>
+                <td><%= f.text_field :city %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :番地以降 %></th>
+                <td><%= f.text_field :building %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :画像 %></th>
+                <td><%= f.attachment_field :shop_image %></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <%= f.radio_button :invalid_flg, :有効, checked: "checked" %><%= f.label :有効 %>
+                    <%= f.radio_button :invalid_flg, :無効 %><%= f.label :無効 %>
+                </td>
+            </tr>
+        </table>
+        <%= f.submit "登録", class:"btn btn-primary btn-block" %>
+    </div>
+    <% end %>
+    </div>
+</div>

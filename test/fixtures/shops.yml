@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop_name: MyString
+  postal_code: MyString
+  prefecture_cd: MyString
+  city: MyString
+  building: MyString
+  shop_image_id: MyString
+  invalid_flg: false
+
+two:
+  shop_name: MyString
+  postal_code: MyString
+  prefecture_cd: MyString
+  city: MyString
+  building: MyString
+  shop_image_id: MyString
+  invalid_flg: false

@@ -15,7 +15,7 @@
                     <% if admin_signed_in? %>
                         <li><a href="/admin/users">会員一覧</a></li>
                         <li><a href="/admin/actions">活動一覧</a></li>
-                        <li><a href="#">店舗管理</a></li>
+                        <li><a href="/admin/shops">店舗管理</a></li>
                         <li><%= link_to"ログアウト", destroy_admin_session_path, method: :delete %></li>
                     <% else %>
                         <li><a href="/admin/admins/sign_in">ログイン</a></li>
