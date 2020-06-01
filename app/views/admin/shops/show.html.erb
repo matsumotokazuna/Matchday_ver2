@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>店舗詳細</h2>
+    </div>
+    <div class="col-sm-offset-9 col-sm-2">
+        <%= link_to'編集', edit_admin_shop_path(@shop.id), class:'btn btn-primary btn-block', id:'edit-btn' %>
+    </div>
+    <div class="col-sm-12">
+    <table class="table">
+        <tr>
+            <th class="active col-sm-2">店舗id<th>
+            <td><%= @shop.id %></td>
+        </tr>
+        <tr>
+            <th class="active">店舗名<th>
+            <td><%= @shop.shop_name %></td>
+        </tr>
+        <tr>
+            <th class="active">住所<th>
+            <td><%= @shop.postal_code %><%= @shop.prefecture_cd %><%= @shop.city %><%= @shop.building %></td>
+        </tr>
+        <tr>
+            <th class="active"><th>
+            <td><%= @shop.invalid_flg %></td>
+        </tr>
+    </table>
+    </div>
+    <div class="col-sm-4">
+    <%# 店舗画像 %>
+        <%= attachment_image_tag @shop, :shop_image, :fill, 600, 400, fallback: "no_image.jpg", size:'600x400' %>
+    </div>
+    </div>
+</div>

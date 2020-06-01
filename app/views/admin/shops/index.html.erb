@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>店舗管理</h2>
+    </div>
+    <%=link_to '登録', new_admin_shop_path, class:'btn btn-primary' %>
+    <table class="table">
+        <thead>
+            <tr class="active">
+                <th class="col-sm-2">店舗id</th>
+                <th class="col-sm-4">店舗名</th>
+                <th class="col-sm-3">都道府県</th>
+                <th class="col-sm-2"></th>
+                <th class="col-sm-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @shops.each do |shop| %>
+            <tr>
+                <td><%= shop.id %></td>
+                <td><%= shop.shop_name %></td>
+                <td><%= shop.prefecture_cd %></td>
+                <td><%= shop.invalid_flg %></td>
+                <td><%= link_to '詳細', admin_shop_path(shop.id), class:'btn btn-primary' %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    </div>
+</div>
