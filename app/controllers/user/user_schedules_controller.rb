@@ -15,12 +15,18 @@ class User::UserSchedulesController < User::Base
     end
 
     def edit
-        @shop_schedule = UserSchedule.find(params[:id])
+        @user_schedule = UserSchedule.find(params[:id])
     end
 
     def update
-        @shop_schedule = UserSchedule.find(params[:id])
-        @shop_schedule.update(user_schedule_params)
+        @user_schedule = UserSchedule.find(params[:id])
+        @user_schedule.update(user_schedule_params)
+        redirect_to user_schedules_path
+    end
+
+    def destroy
+        @user_schedule = UserSchedule.find(params[:id])
+        @user_schedule.destroy
         redirect_to user_schedules_path
     end
 
