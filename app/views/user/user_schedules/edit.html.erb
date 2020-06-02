@@ -14,10 +14,13 @@
                 <th><%= f.label :時間 %></th>
                 <td><%= f.select :user_schedule_time_cd, ShopSchedule.shop_schedule_time_cds.keys %></td>
             </tr>
+            <tr>
+                <th><%= link_to '削除', user_schedule_path(@user_schedule.id), class:'btn btn-danger', method: :delete %></th>
+                <td></td>
+            </tr>
         </table>
         <%= f.submit "編集", class:"btn btn-primary btn-block" %>
     </div>
     <% end %>
-    <%= link_to '削除', user_schedule_path(@user_schedule,id), class:'btn btn-danger', method: :delete %>
     </div>
 </div>
