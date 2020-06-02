@@ -1,3 +1,34 @@
 // Place all the styles related to the user/actions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.date_box{
+    width: 100%;
+    height: 380px;
+    border: 1px solid;
+    border-color: #EEEDED;
+    margin-top: 10px;
+}
+
+.date_image{
+    margin: 10px 30px 10px 10px; 
+    float: left;
+}
+
+.date_male_name{
+    font-size: 20px;
+    margin-top: 20px;
+    color: #386EFF;
+}
+
+.date_female_name{
+    font-size: 20px;
+    margin-top: 20px;
+    color: #FA6A8D;
+}
+
+.date_profile{
+    font-size: 15px;
+    margin-top: 5px;
+    padding-bottom: 10px;
+}

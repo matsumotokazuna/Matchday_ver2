@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     patch '/users/:id' => 'users#update_action', as:'update_action'
     get	'/actions/from_partner' => 'actions#from_partner'
     get	'/actions/from_me' => 'actions#from_me'
+    get	'/actions/date' => 'actions#date'
+    resources :user_schedules, only: [:new, :create, :index, :destroy, :edit, :update]
   end
 
   namespace :admin do

@@ -11,7 +11,7 @@
                     <%= attachment_image_tag action.female_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
                 <% end %>
             <%# ニックネーム %>
-                <div class="user_name">
+                <div class="user_female_name">
                     <%= action.female_user.name %>
                 </div>
             <%# 生年月日から年齢を計算 %>
@@ -29,11 +29,7 @@
                     <%= attachment_image_tag action.male_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
                 <% end %>
             <%# ニックネーム %>
-                <% if current_user.gender_cd == "男性"%>
-                    <div class="user_female_name">
-                <% else %>
-                    <div class="user_male_name">
-                <% end %>
+                <div class="user_male_name">
                     <%= action.male_user.name %>
                 </div>
             <%# 生年月日から年齢を計算 %>
