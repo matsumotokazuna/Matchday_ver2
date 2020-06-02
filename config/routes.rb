@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update]
     resources :actions, only: [:index, :show]
-    resources :shops, only: [:new, :create, :index, :show, :edit, :update]
+    resources :shops, only: [:new, :create, :index, :show, :edit, :update] do
+      resources :shop_schedules, only: [:new, :create, :index, :destroy, :edit, :update]
+    end
   end
 end

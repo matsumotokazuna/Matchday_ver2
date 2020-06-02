@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>予定登録</h2>
+    </div>
+    <%= form_for(@shop_schedule, url: admin_shop_shop_schedules_path(@shop.id)) do |f| %>
+    <div class="col-sm-5">
+        <table class="table">
+            <tr>
+                <th><%= f.label :日付 %></th>
+                <td><%= f.date_select :shop_schedule_date, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 5) %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :時間 %></th>
+                <td><%= f.select :shop_schedule_time_cd, ShopSchedule.shop_schedule_time_cds.keys %></td>
+            </tr>
+        </table>
+        <%= f.submit "登録", class:"btn btn-primary btn-block" %>
+    </div>
+    <% end %>
+    </div>
+</div>

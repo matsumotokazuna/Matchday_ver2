@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>店舗予定</h2>
+    </div>
+    <%=link_to '予定登録', new_admin_shop_shop_schedule_path(@shop.id), class:'btn btn-primary' %>
+    <table class="table">
+        <tr>
+            <th class="active col-sm-2">店舗id</th>
+            <td><%= @shop.id %></td>
+        </tr>
+        <tr>
+            <th class="active col-sm-2">店舗名</th>
+            <td><%= @shop.shop_name %></td>
+        </tr>
+    </table>
+    <table class="table">
+        <thead>
+            <tr class="active">
+                <th class="col-sm-2">日付</th>
+                <th class="col-sm-4">時間</th>
+                <th class="col-sm-2"></th>
+                <th class="col-sm-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @shop_schedules.each do |shop_schedule| %>
+            <tr>
+                <td><%= shop_schedule.shop_schedule_date %></td>
+                <td><%= shop_schedule.shop_schedule_time_cd %></td>
+                <td><%= link_to '編集', edit_admin_shop_shop_schedule_path(shop_id: @shop.id, id:shop_schedule.id ), class:'btn btn-primary' %></td>
+                <td><%= link_to '削除', admin_shop_shop_schedule_path(shop_id: @shop.id, id:shop_schedule.id ), class:'btn btn-danger', method: :delete %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    </div>
+</div>

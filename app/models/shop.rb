@@ -1,4 +1,6 @@
 class Shop < ApplicationRecord
+  has_many :shop_schedules, dependent: :destroy
+
   attachment :shop_image
 
   enum prefecture_cd: {
