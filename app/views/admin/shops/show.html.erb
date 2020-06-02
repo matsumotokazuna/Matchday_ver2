@@ -4,6 +4,9 @@
     <h2>店舗詳細</h2>
     </div>
     <div class="col-sm-offset-9 col-sm-2">
+        <%= link_to'店舗予定', admin_shop_shop_schedules_path(@shop.id), class:'btn btn-primary btn-block', id:'edit-btn' %>
+    </div>
+    <div class="col-sm-offset-9 col-sm-2">
         <%= link_to'編集', edit_admin_shop_path(@shop.id), class:'btn btn-primary btn-block', id:'edit-btn' %>
     </div>
     <div class="col-sm-12">
