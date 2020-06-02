@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>予定編集</h2>
+    </div>
+    <%= form_for(@user_schedule, url: user_schedule_path(@user_schedule.id)) do |f| %>
+    <div class="col-sm-5">
+        <table class="table table-border-less">
+            <tr>
+                <th><%= f.label :日付 %></th>
+                <td><%= f.date_select :user_schedule_date, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 5) %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :時間 %></th>
+                <td><%= f.select :user_schedule_time_cd, ShopSchedule.shop_schedule_time_cds.keys %></td>
+            </tr>
+        </table>
+        <%= f.submit "編集", class:"btn btn-primary btn-block" %>
+    </div>
+    <% end %>
+    </div>
+</div>
