@@ -28,6 +28,13 @@ class Admin::ShopSchedulesController < Admin::Base
         redirect_to admin_shop_shop_schedules_path(@shop_schedule.shop_id)
     end
 
+    def destroy
+        @shop = Shop.find(params[:shop_id])
+        @shop_schedule = ShopSchedule.find(params[:id])
+        @shop_schedule.destroy
+        redirect_to admin_shop_shop_schedules_path(@shop.id)
+    end
+
     private
     def shop_schedule_params
         params.require(:shop_schedule).permit(:shop_schedule_date, :shop_schedule_time_cd)
