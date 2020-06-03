@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     get	'/actions/from_me' => 'actions#from_me'
     get	'/actions/date' => 'actions#date'
     resources :user_schedules, only: [:new, :create, :index, :destroy, :edit, :update]
+    resources :actions, only: [:destroy, :update]
+    get '/actions/:partner_user_id' => 'actions#show', as:'show_action'
+    get '/actions/:partner_user_id/edit' => 'actions#edit', as:'edit_action'
   end
 
   namespace :admin do
