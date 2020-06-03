@@ -37,8 +37,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
-    resources :users, only: [:index, :show, :edit, :update]
-    resources :actions, only: [:index, :show]
+    resources :users, only: [:index, :show, :edit, :update] do
+      resources :user_schedules, only: [:index]
+    end
+    resources :actions, only: [:index, :show, :edit, :update, :destroy]
     resources :shops, only: [:new, :create, :index, :show, :edit, :update] do
       resources :shop_schedules, only: [:new, :create, :index, :destroy, :edit, :update]
     end
