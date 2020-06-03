@@ -4,10 +4,11 @@
 
 .date_box{
     width: 100%;
-    height: 380px;
+    height: 325px;
     border: 1px solid;
     border-color: #EEEDED;
     margin-top: 10px;
+    position: relative;
 }
 
 .date_image{
@@ -17,13 +18,13 @@
 
 .date_male_name{
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
     color: #386EFF;
 }
 
 .date_female_name{
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
     color: #FA6A8D;
 }
 
@@ -31,4 +32,102 @@
     font-size: 15px;
     margin-top: 5px;
     padding-bottom: 10px;
+}
+
+.date_text{
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.date_info{
+    margin-top: 20px;
+    font-size: 15px;
+    color: red;
+}
+
+// デート予約ボタン
+.date_btn_reserve{
+    background-color: #4272B4;
+    border-color: #E5EAEE;
+    border-radius: 20px;
+    width: 300px;
+    height: 65px;
+    text-align: center;
+    position: absolute;
+    bottom:30px;
+    right:40px;
+}
+
+.date_font_reserve p{
+    color: white;
+    font-size: 20px;
+}
+
+// デート待ちボタン
+.date_btn_wait{
+    background-color: #299025;
+    border-color: #E5EAEE;
+    border-radius: 20px;
+    width: 300px;
+    height: 65px;
+    text-align: center;
+    position: absolute;
+    bottom:30px;
+    right:40px;
+}
+
+.date_font_wait p{
+    color: white;
+    font-size: 20px;
+}
+
+// デート済みボタン
+.date_btn_already{
+    background-color: #a9a9a9;
+    border-color: #E5EAEE;
+    border-radius: 20px;
+    width: 300px;
+    height: 65px;
+    text-align: center;
+    position: absolute;
+    bottom:30px;
+    right:40px;
+}
+
+.date_font_already p{
+    color: white;
+    font-size: 20px;
+}
+
+.user_image{
+    text-align: center;
+}
+
+.date_show_male_name{
+    font-size: 20px;
+    text-align: center;
+    color: #386EFF;
+}
+
+.date_show_female_name{
+    font-size: 20px;
+    text-align: center;
+    color: #FA6A8D;
+}
+
+.date_show_profile{
+    font-size: 15px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.date_show_btn, .date_edit_btn{
+    text-align: center;
+}
+
+.date_show_info, .date_edit_info{
+    margin-top: 20px;
+    font-size: 15px;
+    color: red;
+    text-align: center;
 }

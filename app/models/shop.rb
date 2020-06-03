@@ -1,5 +1,6 @@
 class Shop < ApplicationRecord
   has_many :shop_schedules, dependent: :destroy
+  has_many :actions, dependent: :destroy
 
   attachment :shop_image
 

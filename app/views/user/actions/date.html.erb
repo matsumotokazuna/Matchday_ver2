@@ -5,12 +5,13 @@
     </div>
         <%= link_to '自分の予定を登録する', user_schedules_path, class: "btn btn-primary" %>
         <% @actions.each do |action| %>
-            <% if current_user.gender_cd == "男性" %>
-            <div class="date_box">
+        <div class="date_box">
+        <%# ログインユーザが男性の場合 %>
+        <% if current_user.gender_cd == "男性" %>
             <%# プロフィール写真 %>
                 <div class="date_image">
                     <%= link_to (user_path(action.female_user.id)) do %>
-                        <%= attachment_image_tag action.female_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                        <%= attachment_image_tag action.female_user, :user_image, :fill, 200, 300, fallback: "no_image.jpg", size:'200x300' %>
                     <% end %>
                 </div>
             <%# ニックネーム %>
@@ -24,13 +25,59 @@
             <%# 都道府県 %>
                     <%= action.female_user.prefecture_cd %>
                 </div>
-            </div>
-            <% else %>
-            <div class="date_box">
+            <%# デート予約前の場合 %>
+                <% if action.matching_date == nil %>
+                    <%= link_to(show_action_path(action.female_user.id)) do %>
+                        <div class='date_btn_reserve'>
+                            <div class="date_font_reserve">
+                                <p>デート予約</p>
+                            </div>
+                        </div>
+                    <% end %>
+            <%# デート開催待ちの場合 %>
+                <% elsif action.matching_date >= Date.today %>
+                    <div class='date_text'>
+                        日時: <%= action.matching_date.strftime('%Y年%m月%d日') %><%= action.matching_time_cd %>
+                    </div>
+                    <div class='date_text'>
+                        場所: <%= action.shop.shop_name %>
+                    </div>
+                    <div class='date_info'>
+                        <p>※デート当日は10分前にお店にお越しください<br>
+                        ※デートは席のみのご予約です</p>
+                    </div>
+                    <%= link_to(show_action_path(action.female_user.id)) do %>
+                        <div class='date_btn_wait'>
+                            <div class="date_font_wait">
+                                <p>デート待ち</p>
+                            </div>
+                        </div>
+                    <% end %>
+                <%# デート開催済みの場合 %>
+                <% elsif action.matching_date < Date.today %>
+                    <div class='date_text'>
+                        日時: <%= action.matching_date.strftime('%Y年%m月%d日') %><%= action.matching_time_cd %>
+                    </div>
+                    <div class='date_text'>
+                        場所: <%= action.shop.shop_name %>
+                    </div>
+                    <div class='date_info'>
+                        <p>※デート当日は10分前にお店にお越しください<br>
+                        ※デートは席のみのご予約です</p>
+                    </div>
+                    <div class='date_btn_already'>
+                        <div class="date_font_already">
+                            <p>デート済み</p>
+                        </div>
+                    </div>
+                <% else %>
+                <% end %>
+        <%# ログインユーザが女性の場合 %>
+        <% else %>
             <%# プロフィール写真 %>
                 <div class="date_image">
                     <%= link_to (user_path(action.male_user.id)) do %>
-                        <%= attachment_image_tag action.male_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                        <%= attachment_image_tag action.male_user, :user_image, :fill, 200, 300, fallback: "no_image.jpg", size:'200x300' %>
                     <% end %>
                 </div>
             <%# ニックネーム %>
@@ -44,8 +91,55 @@
             <%# 都道府県 %>
                     <%= action.male_user.prefecture_cd %>
                 </div>
-            </div>
-            <% end %>
+            <%# デート予約前の場合 %>
+                <% if action.matching_date == nil %>
+                    <%= link_to(show_action_path(action.male_user.id)) do %>
+                        <div class='date_btn_reserve'>
+                            <div class="date_font_reserve">
+                                <p>デート予約</p>
+                            </div>
+                        </div>
+                    <% end %>
+            <%# デート開催待ちの場合 %>
+                <% elsif action.matching_date >= Date.today %>
+                    <div class='date_text'>
+                        日時: <%= action.matching_date.strftime('%Y年%m月%d日') %><%= action.matching_time_cd %>
+                    </div>
+                    <div class='date_text'>
+                        場所: <%= action.shop.shop_name %>
+                    </div>
+                    <div class='date_info'>
+                        <p>※デート当日は10分前にお店にお越しください<br>
+                        ※デートは席のみのご予約です</p>
+                    </div>
+                    <%= link_to(show_action_path(action.male_user.id)) do %>
+                        <div class='date_btn_wait'>
+                            <div class="date_font_wait">
+                                <p>デート待ち</p>
+                            </div>
+                        </div>
+                    <% end %>
+                <%# デート開催済みの場合 %>
+                <% elsif action.matching_date < Date.today %>
+                    <div class='date_text'>
+                        日時: <%= action.matching_date.strftime('%Y年%m月%d日') %><%= action.matching_time_cd %>
+                    </div>
+                    <div class='date_text'>
+                        場所: <%= action.shop.shop_name %>
+                    </div>
+                    <div class='date_info'>
+                        <p>※デート当日は10分前にお店にお越しください<br>
+                        ※デートは席のみのご予約です</p>
+                    </div>
+                    <div class='date_btn_already'>
+                        <div class="date_font_already">
+                            <p>デート済み</p>
+                        </div>
+                    </div>
+                <% else %>
+                <% end %>
+        <% end %>
+        </div>
         <% end %>
     </div>
 </div>
