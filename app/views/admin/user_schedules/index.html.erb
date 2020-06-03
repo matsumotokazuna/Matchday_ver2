@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>予定</h2>
+    </div>
+        <table class="table">
+                <tr class="active">
+                    <th>日付</th>
+                    <th>時間</th>
+                </tr>
+            <% @user_schedules.each do |user_schedule| %>
+                <tr>
+                    <td><%= user_schedule.user_schedule_date %></td>
+                    <td><%= user_schedule.user_schedule_time_cd %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
     <div class="page_title">
-    <h2>活動詳細</h2>
+    <h2>活動編集</h2>
     </div>
     <div>
     <table class="table">
@@ -41,11 +41,6 @@
             <td><%= @action.male_user.prefecture_cd %></td>
             <td><%= @action.female_user.prefecture_cd %></td>
         </tr>
-        <tr>
-            <th class="active"><th>
-            <td><%= link_to'予定', admin_user_user_schedules_path(@action.male_user.id), class:'btn btn-primary' %></td>
-            <td><%= link_to'予定', admin_user_user_schedules_path(@action.female_user.id), class:'btn btn-primary' %></td>
-        </tr>
     </table>
     </div>
     <div>
@@ -72,14 +67,15 @@
         </tr>
         <tr>
             <th class="active col-sm-2">デート場所<th>
-            <td class="col-sm-10"><%= @action.shop.shop_name %>（<%= @action.shop.prefecture_cd %><%= @action.shop.city %><%= @action.shop.building %>）</td>
-        </tr>
-        <tr>
-            <th class="active col-sm-2"><th>
-            <td class="col-sm-10"><%= attachment_image_tag @action.shop, :shop_image, :fill, 500, 300, fallback: "no_image.jpg", size:'500x300' %></td>
+            <td class="col-sm-10">
+                <%= form_for(@action, url: action_path(@action.id)) do |f| %>
+                    <%= f.collection_select :shop_id, @shops, :id, :shop_name %>
+            </td>
         </tr>
     </table>
-    <%= link_to'編集', edit_admin_action_path(@action.id), class:'btn btn-primary' %>
+                <%= f.submit "編集する", class:"btn btn-primary" %>
+                <% end %>
+            <%= link_to 'キャンセルする', admin_action_path(@action.id), class:'btn btn-danger', method: :delete %>
     <% end %>
     </div>
     </div>
