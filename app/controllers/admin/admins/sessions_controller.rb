@@ -4,6 +4,14 @@ class Admin::Admins::SessionsController < Devise::SessionsController
   layout 'admin'
   # before_action :configure_sign_in_params, only: [:create]
 
+  def after_sign_in_path_for(resource)
+    admin_users_path # ログイン後に遷移するpathを設定
+  end
+
+  def after_sign_out_path_for(resource)
+    admin_root_path # ログアウト後に遷移するpathを設定
+  end
+
   # GET /resource/sign_in
   # def new
   #   super
