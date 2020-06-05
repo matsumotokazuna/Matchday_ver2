@@ -57,4 +57,13 @@ class User < ApplicationRecord
   enum cigaret_cd: {
     吸わない:1,吸う:2,ときどき吸う:3,非喫煙者の前では吸わない:4,相手が嫌ならやめる:5,電子たばこを吸う:6
   }
+
+  def self.search(prefecture_cd,min_age,max_age)
+      if prefecture_cd == ""
+        User.where( birth_date: "#{max_age}".."#{min_age}" )
+      else
+        User.where( prefecture_cd: "#{prefecture_cd}", birth_date: "#{max_age}".."#{min_age}" )
+      end
+  end
+
 end

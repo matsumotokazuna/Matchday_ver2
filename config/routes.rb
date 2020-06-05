@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :actions, only: [:destroy, :update]
     get '/actions/:partner_user_id' => 'actions#show', as:'show_action'
     get '/actions/:partner_user_id/edit' => 'actions#edit', as:'edit_action'
+    get 'search' => 'search#search'
   end
 
   namespace :admin do
