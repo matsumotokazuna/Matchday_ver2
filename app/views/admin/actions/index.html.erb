@@ -22,8 +22,12 @@
                         男性いいね送信
                     <% elsif action.male_matching_at == nil && action.female_matching_at != nil %>
                         女性いいね送信
-                    <% elsif action.matching_at != nil %>
-                        いいね成立
+                    <% elsif action.matching_at != nil && action.matching_date == nil %>
+                        デート予約
+                    <% elsif action.matching_date >= Date.today %>
+                        デート待ち
+                    <% elsif action.matching_date < Date.today %>
+                        デート済み
                     <% else %>
                     <% end %>
                 </td>
