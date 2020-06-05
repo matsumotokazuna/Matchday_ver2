@@ -12,9 +12,9 @@ class User::UsersController < User::Base
     def show
         @user = User.find(params[:id])
         if current_user.gender_cd == "男性" #ログインユーザが男性の場合
-            @action = Action.find_by(male_user_id: current_user.id, female_user_id: @user.id)
+            @action = Action.includes(:male_user, :female_user).find_by(male_user_id: current_user.id, female_user_id: @user.id)
         else #ログインユーザが女性の場合
-            @action = Action.find_by(male_user_id: @user.id, female_user_id: current_user.id)
+            @action = Action.includes(:male_user, :female_user).find_by(male_user_id: @user.id, female_user_id: current_user.id)
         end
     end
 
