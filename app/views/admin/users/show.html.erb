@@ -82,15 +82,19 @@
     <table class="table">
         <tr>
             <th class="active col-sm-4">登録日時<th>
-            <td><%= @user.created_at %></td>
+            <td><%= @user.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
         </tr>
         <tr>
             <th class="active">更新日時<th>
-            <td><%= @user.updated_at %></td>
+            <td><%= @user.updated_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
         </tr>
         <tr>
             <th class="active">退会日時<th>
-            <td><%= @user.disabled_at %></td>
+            <td>                    
+            <% if @user.disabled_at != nil %>
+                <%= @user.disabled_at.strftime('%Y-%m-%d %H:%M:%S') %>
+            <% end %>
+            </td>
         </tr>
     </table>
     </div>

@@ -62,8 +62,16 @@ class User::ActionsController < User::Base
         @shops = Shop.all
         if current_user.gender_cd == "男性" #ログインユーザが男性の場合
             @action = Action.includes(:male_user, :female_user, :shop).find_by(male_user_id: current_user.id, female_user_id: @user.id)
+            if @action.matching_date == Date.today
+                redirect_back(fallback_location: root_path)
+            else
+            end
         else #ログインユーザが女性の場合
             @action = Action.includes(:male_user, :female_user, :shop).find_by(male_user_id: @user.id, female_user_id: current_user.id)
+            if  @action.matching_date == Date.today
+                redirect_back(fallback_location: root_path)
+            else
+            end
         end
     end
 
