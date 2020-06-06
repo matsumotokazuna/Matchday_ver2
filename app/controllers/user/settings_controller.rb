@@ -29,8 +29,11 @@ class User::SettingsController < User::Base
 
     def update_withdraw
         @user = current_user
-        @user.update(disabled_params)
-        redirect_to settings_path
+        @user.disabled_at = DateTime.now
+        @user.email = @user.disabled_at.strftime('%Y-%m-%d').to_s + '_' + @user.email.to_s
+        @user.save
+        reset_session
+        redirect_to root_path
     end
 
     private
@@ -57,7 +60,4 @@ class User::SettingsController < User::Base
         params.require(:user).permit(:email)
     end
 
-    def disabled_params
-        params.require(:user).permit(:disabled_at)
-    end
 end

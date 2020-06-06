@@ -14,6 +14,23 @@
     margin-top: 20px;
 }
 
+// いいね送信済ボタン
+.lile_btn_gray{
+    background-color: #a9a9a9;
+    border-color: #E5EAEE;
+    border-radius: 20px;
+    width: 400px;
+    height: 65px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.lile_font_gray p{
+    color: white;
+    font-size: 20px;
+    padding-top: 17px;
+}
+
 // デート予約ボタン
 .user_show_btn_reserve{
     background-color: #4272B4;

@@ -66,28 +66,28 @@
     <div class="col-sm-offset-4 col-sm-4">
         <%# 男性いいね送信日時がnil、女性いいね送信日時がnil %>
         <% if @action == nil %>
-            <%= form_with url: create_action_path(@user.id) do |f| %>
+            <%= form_with url: create_action_path(@user.id), local: true do |f| %>
                 <%= f.submit 'いいね', class: 'like_btn' %>
             <% end %>
         <%# 男性いいね送信日時がnil、女性いいね送信日時がnilではない %>
         <% elsif @action.male_matching_at == nil && @action.female_matching_at != nil %>
             <%# ログインユーザが男性の場合 %>   
             <% if current_user.gender_cd == "男性" %>
-                <%= form_with(url: update_action_path(@user.id), method: :patch) do |f| %>
+                <%= form_with url: update_action_path(@user.id), method: :patch, local: true do |f| %>
                     <%= f.submit 'お相手から', class: 'like_btn' %>
                 <% end %>
             <%# ログインユーザが女性の場合 %>
             <% else %>
-                <div class='lile_btn_gray'><div class="lile_font_gray">いいね</div></div>
+                <div class='lile_btn_gray'><div class="lile_font_gray"><p>いいね</p></div></div>
             <% end %>
         <%# 男性いいね送信日時がnilではない、女性いいね送信日時がnil %>
         <% elsif @action.male_matching_at != nil && @action.female_matching_at == nil %>
             <%# ログインユーザが男性の場合 %> 
             <% if current_user.gender_cd == "男性" %>
-                <div class='lile_btn_gray'><div class="lile_font_gray">いいね</div></div>
+                <div class='lile_btn_gray'><div class="lile_font_gray"><p>いいね</p></div></div>
             <%# ログインユーザが女性の場合 %>
             <% else %>
-                <%= form_with(url: update_action_path(@user.id), method: :patch) do |f| %>
+                <%= form_with url: update_action_path(@user.id), method: :patch, local: true do |f| %>
                     <%= f.submit 'お相手から', class: 'like_btn' %>
                 <% end %>
             <% end %>
