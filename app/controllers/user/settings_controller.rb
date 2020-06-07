@@ -32,7 +32,7 @@ class User::SettingsController < User::Base
         @user.disabled_at = DateTime.now
         @user.email = @user.disabled_at.strftime('%Y-%m-%d').to_s + '_' + @user.email.to_s
         @user.save
-        reset_session
+        session[:user] = nil
         redirect_to root_path
     end
 

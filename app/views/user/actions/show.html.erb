@@ -70,12 +70,16 @@
                         <p>合致するデートの日程がありません。あなたの予定を登録してください</p>
                         <%= link_to '自分の予定を登録する', user_schedules_path, class:"btn btn-primary" %>
                     <% else %>
+                    <% roop_end = false %>
                     <% @male_schedules.each do |male_schedule| %>
                         <% @female_schedules.each do |female_schedule| %>
-                            <% break if male_schedule.user_schedule_date == female_schedule.user_schedule_date && male_schedule.user_schedule_time_cd == female_schedule.user_schedule_time_cd %>
+                            <% if male_schedule.user_schedule_date == female_schedule.user_schedule_date && male_schedule.user_schedule_time_cd == female_schedule.user_schedule_time_cd %>
                                 <%= male_schedule.user_schedule_date.strftime('%Y年%m月%d日') %><%= male_schedule.user_schedule_time_cd %>
+                            <% roop_end = true %>
+                            <% break %>
+                            <% end %>
                         <% end %>
-                        <% break %>
+                        <% break if roop_end %>
                     <% end %>
                     <% end %>
                 <%# デート開催待ちの場合 %>

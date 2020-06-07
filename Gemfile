@@ -76,3 +76,5 @@ gem "actionpack", ">= 5.2.4.3"
 gem "activestorage", ">= 5.2.4.3"
 
 gem 'dotenv-rails'
+
+gem 'pry-rails'
