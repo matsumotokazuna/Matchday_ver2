@@ -1,4 +1,4 @@
-class Action < ApplicationRecord
+class Activity < ApplicationRecord
     belongs_to :user, foreign_key: "male_user_id"
     belongs_to :user, foreign_key: "female_user_id"
 

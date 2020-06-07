@@ -24,15 +24,15 @@ Rails.application.routes.draw do
     patch '/settings/email' => 'settings#update_email'
     get '/settings/withdraw' => 'settings#settings_withdraw'
     patch '/settings/withdraw' => 'settings#update_withdraw'
-    post '/users/:id' => 'users#create_action', as:'create_action'
-    patch '/users/:id' => 'users#update_action', as:'update_action'
-    get	'/actions/from_partner' => 'actions#from_partner'
-    get	'/actions/from_me' => 'actions#from_me'
-    get	'/actions/date' => 'actions#date'
+    post '/users/:id' => 'users#create_activity', as:'create_activity'
+    patch '/users/:id' => 'users#update_activity', as:'update_activity'
+    get	'/activities/from_partner' => 'activities#from_partner'
+    get	'/activities/from_me' => 'activities#from_me'
+    get	'/activities/date' => 'activities#date'
     resources :user_schedules, only: [:new, :create, :index, :destroy, :edit, :update]
-    resources :actions, only: [:destroy, :update]
-    get '/actions/:partner_user_id' => 'actions#show', as:'show_action'
-    get '/actions/:partner_user_id/edit' => 'actions#edit', as:'edit_action'
+    resources :activities, only: [:destroy, :update]
+    get '/activities/:partner_user_id' => 'activities#show', as:'show_activities'
+    get '/activities/:partner_user_id/edit' => 'activities#edit', as:'edit_activities'
     get 'search' => 'search#search'
   end
 
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update] do
       resources :user_schedules, only: [:index]
     end
-    resources :actions, only: [:index, :show, :edit, :update, :destroy]
+    resources :activities, only: [:index, :show, :edit, :update, :destroy]
     resources :shops, only: [:new, :create, :index, :show, :edit, :update] do
       resources :shop_schedules, only: [:new, :create, :index, :destroy, :edit, :update]
     end

@@ -134,3 +134,15 @@
     color: red;
     text-align: center;
 }
+
+.activity_box{
+    float: left;
+    margin-bottom: 30px;
+    border: 1px solid;
+    border-color: #EEEDED;
+}
+
+.activity_box:not(:nth-child(4n+1)){
+    margin-right: 40px;
+
+}
