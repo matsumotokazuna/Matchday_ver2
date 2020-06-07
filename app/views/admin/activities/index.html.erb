@@ -15,27 +15,27 @@
             </tr>
         </thead>
         <tbody>
-            <% @actions.each do |action| %>
+            <% @activities.each do |activity| %>
             <tr>
                 <td>
-                    <% if action.male_matching_at != nil && action.female_matching_at == nil %>
+                    <% if activity.male_matching_at != nil && activity.female_matching_at == nil %>
                         男性いいね送信
-                    <% elsif action.male_matching_at == nil && action.female_matching_at != nil %>
+                    <% elsif activity.male_matching_at == nil && activity.female_matching_at != nil %>
                         女性いいね送信
-                    <% elsif action.matching_at != nil && action.matching_date == nil %>
+                    <% elsif activity.matching_at != nil && activity.matching_date == nil %>
                         デート予約
-                    <% elsif action.matching_date >= Date.today %>
+                    <% elsif activity.matching_date >= Date.today %>
                         デート待ち
-                    <% elsif action.matching_date < Date.today %>
+                    <% elsif activity.matching_date < Date.today %>
                         デート済み
                     <% else %>
                     <% end %>
                 </td>
-                <td><%= action.male_user.id %></td>
-                <td><%= action.male_user.name %></td>
-                <td><%= action.female_user.id %></td>
-                <td><%= action.female_user.name %></td>
-                <td><%= link_to '詳細', admin_action_path(action.id), class:'btn btn-primary' %></td>
+                <td><%= activity.male_user.id %></td>
+                <td><%= activity.male_user.name %></td>
+                <td><%= activity.female_user.id %></td>
+                <td><%= activity.female_user.name %></td>
+                <td><%= link_to '詳細', admin_activity_path(activity.id), class:'btn btn-primary' %></td>
             </tr>
             <% end %>
         </tbody>

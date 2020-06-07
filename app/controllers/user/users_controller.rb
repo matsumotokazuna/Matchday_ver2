@@ -17,41 +17,41 @@ class User::UsersController < User::Base
             redirect_back(fallback_location: root_path)
         else
             if current_user.gender_cd == "男性" #ログインユーザが男性の場合
-                @action = Action.includes(:male_user, :female_user).find_by(male_user_id: current_user.id, female_user_id: @user.id)
+                @activity = Activity.includes(:male_user, :female_user).find_by(male_user_id: current_user.id, female_user_id: @user.id)
             else #ログインユーザが女性の場合
-                @action = Action.includes(:male_user, :female_user).find_by(male_user_id: @user.id, female_user_id: current_user.id)
+                @activity = Activity.includes(:male_user, :female_user).find_by(male_user_id: @user.id, female_user_id: current_user.id)
             end
         end
     end
 
-    def create_action
+    def create_activity
         @user = User.find(params[:id])
-        @action = Action.new
+        @activity = Activity.new
         if current_user.gender_cd == "男性" #ログインユーザが男性の場合
-            @action.male_user_id = current_user.id
-            @action.female_user_id = @user.id
-            @action.male_matching_at = DateTime.now
+            @activity.male_user_id = current_user.id
+            @activity.female_user_id = @user.id
+            @activity.male_matching_at = DateTime.now
         else #ログインユーザが女性の場合
-            @action.male_user_id = @user.id
-            @action.female_user_id = current_user.id
-            @action.female_matching_at = DateTime.now
+            @activity.male_user_id = @user.id
+            @activity.female_user_id = current_user.id
+            @activity.female_matching_at = DateTime.now
         end
-        @action.save
+        @activity.save
         redirect_to user_path(@user.id)
     end
 
-    def update_action
+    def update_activity
         @user = User.find(params[:id])
         if  current_user.gender_cd == "男性" #ログインユーザが男性の場合
-            @action = Action.find_by(male_user_id: current_user.id, female_user_id: @user.id)
-            @action.male_matching_at = DateTime.now
-            @action.matching_at = DateTime.now
+            @activity = Activity.find_by(male_user_id: current_user.id, female_user_id: @user.id)
+            @activity.male_matching_at = DateTime.now
+            @activity.matching_at = DateTime.now
         else #ログインユーザが女性の場合
-            @action = Action.find_by(male_user_id: @user.id, female_user_id: current_user.id)
-            @action.female_matching_at = DateTime.now
-            @action.matching_at = DateTime.now
+            @activity = Activity.find_by(male_user_id: @user.id, female_user_id: current_user.id)
+            @activity.female_matching_at = DateTime.now
+            @activity.matching_at = DateTime.now
         end
-        @action.save
+        @activity.save
         redirect_to user_path(@user.id)
     end
 end

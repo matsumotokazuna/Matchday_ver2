@@ -65,12 +65,12 @@
     </div>
     <div class="col-sm-offset-4 col-sm-4">
         <%# 男性いいね送信日時がnil、女性いいね送信日時がnil %>
-        <% if @action == nil %>
-            <%= form_with url: create_action_path(@user.id), local: true do |f| %>
+        <% if @activity == nil %>
+            <%= form_with url: create_activity_path(@user.id), local: true do |f| %>
                 <%= f.submit 'いいね', class: 'like_btn' %>
             <% end %>
         <%# 男性いいね送信日時がnil、女性いいね送信日時がnilではない %>
-        <% elsif @action.male_matching_at == nil && @action.female_matching_at != nil %>
+        <% elsif @activity.male_matching_at == nil && @activity.female_matching_at != nil %>
             <%# ログインユーザが男性の場合 %>   
             <% if current_user.gender_cd == "男性" %>
                 <%= form_with url: update_action_path(@user.id), method: :patch, local: true do |f| %>
@@ -81,21 +81,21 @@
                 <div class='lile_btn_gray'><div class="lile_font_gray"><p>いいね</p></div></div>
             <% end %>
         <%# 男性いいね送信日時がnilではない、女性いいね送信日時がnil %>
-        <% elsif @action.male_matching_at != nil && @action.female_matching_at == nil %>
+        <% elsif @activity.male_matching_at != nil && @activity.female_matching_at == nil %>
             <%# ログインユーザが男性の場合 %> 
             <% if current_user.gender_cd == "男性" %>
                 <div class='lile_btn_gray'><div class="lile_font_gray"><p>いいね</p></div></div>
             <%# ログインユーザが女性の場合 %>
             <% else %>
-                <%= form_with url: update_action_path(@user.id), method: :patch, local: true do |f| %>
+                <%= form_with url: update_activity_path(@user.id), method: :patch, local: true do |f| %>
                     <%= f.submit 'お相手から', class: 'like_btn' %>
                 <% end %>
             <% end %>
         <%# いいね成立日時がnilではない、デート開催日がnil %>
-        <% elsif @action.matching_at != nil && @action.matching_date == nil %>
+        <% elsif @activity.matching_at != nil && @activity.matching_date == nil %>
             <%# ログインユーザが男性の場合 %> 
                 <% if current_user.gender_cd == "男性" %>
-                    <%= link_to(show_action_path(@action.female_user.id)) do %>
+                    <%= link_to(show_activities_path(@activity.female_user.id)) do %>
                         <div class='user_show_btn_reserve'>
                             <div class="user_show_font_reserve">
                                 <p>デート予約</p>
@@ -104,7 +104,7 @@
                     <% end %>
             <%# ログインユーザが女性の場合 %>
                 <% else %>
-                    <%= link_to(show_action_path(@action.male_user.id)) do %>
+                    <%= link_to(show_activities_path(@activity.male_user.id)) do %>
                         <div class='user_show_btn_reserve'>
                             <div class="user_show_font_reserve">
                                 <p>デート予約</p>
@@ -113,10 +113,10 @@
                     <% end %>
                 <% end %>
         <%# デート開催日時が今日以降の日付 %>
-        <% elsif @action.matching_date >= Date.today %>
+        <% elsif @activity.matching_date >= Date.today %>
              <%# ログインユーザが男性の場合 %> 
                 <% if current_user.gender_cd == "男性" %>
-                    <%= link_to(show_action_path(@action.female_user.id)) do %>
+                    <%= link_to(show_activities_path(@activity.female_user.id)) do %>
                         <div class='user_show_btn_wait'>
                             <div class="user_show_btn_wait">
                                 <p>デート待ち</p>
@@ -125,7 +125,7 @@
                     <% end %>
             <%# ログインユーザが女性の場合 %>
                 <% else %>
-                    <%= link_to(show_action_path(@action.female_user.id)) do %>
+                    <%= link_to(show_activities_path(@activity.female_user.id)) do %>
                         <div class='user_show_btn_wait'>
                             <div class="user_show_btn_wait">
                                 <p>デート待ち</p>
@@ -134,7 +134,7 @@
                     <% end %>
                 <% end %>
         <%# デート開催日時が今日より前の日付 %>
-        <% elsif @action.matching_date < Date.today %>
+        <% elsif @activity.matching_date < Date.today %>
             <div class='user_show_btn_already'>
                         <div class="user_show_font_already">
                             <p>デート済み</p>

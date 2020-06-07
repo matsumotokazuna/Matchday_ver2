@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_075324) do
+ActiveRecord::Schema.define(version: 2020_06_07_075844) do
 
-  create_table "actions", force: :cascade do |t|
+  create_table "activities", force: :cascade do |t|
     t.integer "male_user_id"
     t.integer "female_user_id"
     t.datetime "male_matching_at"

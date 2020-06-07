@@ -2,11 +2,11 @@
     <div class="row">
     <div class="page_title">
     <%# デート予約前の場合 %>
-    <% if @action.matching_date == nil %>
+    <% if @activity.matching_date == nil %>
         <h2>デート予約</h2>
         <p>女性がデート場所を選択してください</p>
     <%# デート開催待ちの場合 %>
-    <% elsif @action.matching_date >= Date.today %>
+    <% elsif @activity.matching_date >= Date.today %>
         <h2>デート待ち</h2>
     <% else %>
     <% end %>
@@ -16,15 +16,15 @@
             <tr>
                 <td class="col-sm-4">
                     <div class="user_image">
-                        <%= link_to (user_path(@action.male_user.id)) do %>
-                            <%= attachment_image_tag @action.male_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                        <%= link_to (user_path(@activity.male_user.id)) do %>
+                            <%= attachment_image_tag @activity.male_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
                         <% end %>
                     </div>
                 </td>
                 <td class="col-sm-4">
                     <div class="user_image">
-                        <%= link_to (user_path(@action.female_user.id)) do %>
-                            <%= attachment_image_tag @action.female_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                        <%= link_to (user_path(@activity.female_user.id)) do %>
+                            <%= attachment_image_tag @activity.female_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
                         <% end %>
                     </div>
                 </td>
@@ -32,28 +32,28 @@
             <tr>
                 <td>
                     <div class="date_show_male_name">
-                        <%= @action.male_user.name %>
+                        <%= @activity.male_user.name %>
                     </div>
                 </td>
                 <td>
                     <div class="date_show_female_name">
-                        <%= @action.female_user.name %>
+                        <%= @activity.female_user.name %>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="date_show_profile">
-                        <% birthdate = @action.male_user.birth_date%>
+                        <% birthdate = @activity.male_user.birth_date%>
                         <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
-                        <%= @action.male_user.prefecture_cd %>
+                        <%= @activity.male_user.prefecture_cd %>
                     </div>
                 </td>
                 <td>
                     <div class="date_show_profile">
-                        <% birthdate = @action.female_user.birth_date%>
+                        <% birthdate = @activity.female_user.birth_date%>
                         <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
-                        <%= @action.female_user.prefecture_cd %>
+                        <%= @activity.female_user.prefecture_cd %>
                     </div>
                 </td>
             <tr>
@@ -65,7 +65,7 @@
                 <th class="col-sm-2">日時</th>
                 <td class="col-sm-10">
                 <%# デート予約前の場合 %>
-                <% if @action.matching_date == nil %>
+                <% if @activity.matching_date == nil %>
                     <% if @male_schedules == [] or @female_schedules == [] %>
                         <p>合致するデートの日程がありません。あなたの予定を登録してください</p>
                         <%= link_to '自分の予定を登録する', user_schedules_path, class:"btn btn-primary" %>
@@ -83,21 +83,21 @@
                     <% end %>
                     <% end %>
                 <%# デート開催待ちの場合 %>
-                <% elsif @action.matching_date >= Date.today %>
-                    <%= @action.matching_date.strftime('%Y年%m月%d日') %><%= @action.matching_time_cd %>
+                <% elsif @activity.matching_date >= Date.today %>
+                    <%= @activity.matching_date.strftime('%Y年%m月%d日') %><%= @activity.matching_time_cd %>
                 <% else %>
                 <% end %>
                 </td>
                 </tr>
         <%# デート予約前の場合 %>
-        <% if @action.matching_date == nil %>
+        <% if @activity.matching_date == nil %>
             <% if @male_schedules == [] or @female_schedules == [] %>
         </table>            
             <% else %>
             <tr>
                 <th>場所</th>
                 <td>
-                    <%= form_for(@action, url: action_path(@action.id)) do |f| %>
+                    <%= form_for(@activity, url: activity_path(@activity.id)) do |f| %>
                         <%= f.collection_select :shop_id, @shops, :id, :shop_name %>
                 </td>
             </tr>
@@ -108,31 +108,31 @@
             </div>
             <% end %>
         <%# デート開催待ちの場合 %>
-        <% elsif @action.matching_date >= Date.today %>
+        <% elsif @activity.matching_date >= Date.today %>
             <tr>
                 <th>場所</th>
                 <td>
-                    <%= @action.shop.shop_name %>
+                    <%= @activity.shop.shop_name %>
                 </td>
             </tr>
             <tr>
                 <th>アクセス</th>
-                <td><%= @action.shop.prefecture_cd %><%= @action.shop.city %><%= @action.shop.building %></td>
+                <td><%= @activity.shop.prefecture_cd %><%= @activity.shop.city %><%= @activity.shop.building %></td>
             </tr>
             <tr>
                 <th></th>
-                <td><%= attachment_image_tag @action.shop, :shop_image, :fill, 500, 300, fallback: "no_image.jpg", size:'500x300' %></td>
+                <td><%= attachment_image_tag @activity.shop, :shop_image, :fill, 500, 300, fallback: "no_image.jpg", size:'500x300' %></td>
             </tr>
         </table>
-            <% if @action.matching_date != Date.today %>
+            <% if @activity.matching_date != Date.today %>
             <div class="date_show_info">
                 <p>※デート開催日の前日まで変更・キャンセル可能です。</p>
             </div>
             <div class="date_show_btn">
                 <% if current_user.gender_cd == "男性" %>
-                    <%= link_to '編集する', edit_action_path(@action.female_user.id), class:"btn btn-primary" %>
+                    <%= link_to '編集する', edit_activities_path(@activity.female_user.id), class:"btn btn-primary" %>
                 <% else %>
-                    <%= link_to '編集する', edit_action_path(@action.male_user.id), class:"btn btn-primary" %>
+                    <%= link_to '編集する', edit_activities_path(@activity.male_user.id), class:"btn btn-primary" %>
                 <% end %>
             </div>
             <% end %>
