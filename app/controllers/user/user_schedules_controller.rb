@@ -1,4 +1,5 @@
 class User::UserSchedulesController < User::Base
+    before_action :authenticate_user!
     def index
         @user_schedules = UserSchedule.where(user_id: current_user.id)
         @user_schedules_json = @user_schedules.to_json.html_safe

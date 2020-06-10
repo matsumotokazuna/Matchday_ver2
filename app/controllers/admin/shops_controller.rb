@@ -1,4 +1,5 @@
 class Admin::ShopsController < Admin::Base
+    before_action :authenticate_admin!
     def index
         @shops = Shop.all
     end
