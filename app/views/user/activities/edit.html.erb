@@ -63,7 +63,7 @@
                 <th>場所</th>
                 <td>
                     <%= form_for(@activity, url: activity_path(@activity.id)) do |f| %>
-                        <%= f.collection_select :shop_id, @shops, :id, :shop_name %>
+                        <%= f.collection_select :shop_id, @shops, :id, :full_shop_address %>
                 </td>
             </tr>
         </table>
