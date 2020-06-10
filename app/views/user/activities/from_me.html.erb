@@ -5,41 +5,47 @@
     </div>
         <% @activities.each do |activity| %>
             <% if current_user.gender_cd == "男性" %>
-            <div class="activity_box">
-            <%# プロフィール写真 %>
-                <%= link_to (user_path(activity.female_user.id)) do %>
-                    <%= attachment_image_tag activity.female_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                <% if activity.female_user.disabled_at == nil %>
+                <div class="activity_box">
+                <%# プロフィール写真 %>
+                    <%= link_to (user_path(activity.female_user.id)) do %>
+                        <%= attachment_image_tag activity.female_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                    <% end %>
+                <%# ニックネーム %>
+                    <div class="user_female_name">
+                        <%= activity.female_user.name %>
+                    </div>
+                <%# 生年月日から年齢を計算 %>
+                    <div class="user_profile">
+                        <% birthdate = activity.female_user.birth_date%>
+                        <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                <%# 都道府県 %>
+                        <%= activity.female_user.prefecture_cd %>
+                    </div>
+                </div>
+                <% else %>
                 <% end %>
-            <%# ニックネーム %>
-                <div class="user_female_name">
-                    <%= activity.female_user.name %>
-                </div>
-            <%# 生年月日から年齢を計算 %>
-                <div class="user_profile">
-                    <% birthdate = activity.female_user.birth_date%>
-                    <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
-            <%# 都道府県 %>
-                    <%= activity.female_user.prefecture_cd %>
-                </div>
-            </div>
             <% else %>
-            <div class="activity_box">
-            <%# プロフィール写真 %>
-                <%= link_to (user_path(activity.male_user.id)) do %>
-                    <%= attachment_image_tag activity.male_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                <% if activity.male_user.disabled_at == nil %>
+                <div class="activity_box">
+                <%# プロフィール写真 %>
+                    <%= link_to (user_path(activity.male_user.id)) do %>
+                        <%= attachment_image_tag activity.male_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                    <% end %>
+                <%# ニックネーム %>
+                    <div class="user_male_name">
+                        <%= activity.male_user.name %>
+                    </div>
+                <%# 生年月日から年齢を計算 %>
+                    <div class="user_profile">
+                        <% birthdate = activity.male_user.birth_date%>
+                        <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                <%# 都道府県 %>
+                        <%= activity.male_user.prefecture_cd %>
+                    </div>
+                </div>
+                <% else %>
                 <% end %>
-            <%# ニックネーム %>
-                <div class="user_male_name">
-                    <%= activity.male_user.name %>
-                </div>
-            <%# 生年月日から年齢を計算 %>
-                <div class="user_profile">
-                    <% birthdate = activity.male_user.birth_date%>
-                    <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
-            <%# 都道府県 %>
-                    <%= activity.male_user.prefecture_cd %>
-                </div>
-            </div>
             <% end %>
         <% end %>
     </div>

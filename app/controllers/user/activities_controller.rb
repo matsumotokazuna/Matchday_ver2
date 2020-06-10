@@ -24,7 +24,7 @@ class User::ActivitiesController < User::Base
     end
 
     def show
-        @user = User.find(params[:partner_user_id]) #相手の情報
+        @user = User.find_by(id: params[:partner_user_id], disabled_at: nil) #相手の情報
         if current_user.gender_cd == "男性" #ログインユーザが男性の場合
             @activity = Activity.includes(:male_user, :female_user, :shop).find_by(male_user_id: current_user.id, female_user_id: @user.id)
             @male_schedules = UserSchedule.where(user_id: current_user.id)
@@ -37,18 +37,18 @@ class User::ActivitiesController < User::Base
         if @male_schedules == [] or @female_schedules == []
             @schedule_date = nil
         else
-        roop_end = false
-        @male_schedules.each do |male_schedule|
-        @female_schedules.each do |female_schedule|
-            if male_schedule.user_schedule_date == female_schedule.user_schedule_date && male_schedule.user_schedule_time_cd == female_schedule.user_schedule_time_cd
-                @schedule_date = male_schedule.user_schedule_date
-                @schedule_time = male_schedule.user_schedule_time_cd
-            roop_end = true
-            break
+            roop_end = false
+            @male_schedules.each do |male_schedule|
+            @female_schedules.each do |female_schedule|
+                if male_schedule.user_schedule_date == female_schedule.user_schedule_date && male_schedule.user_schedule_time_cd == female_schedule.user_schedule_time_cd
+                    @schedule_date = male_schedule.user_schedule_date
+                    @schedule_time = male_schedule.user_schedule_time_cd
+                roop_end = true
+                break
+                end
             end
-        end
-        break if roop_end
-        end
+            break if roop_end
+            end
         end
         # 合致している店舗の予定を確認
         @shops = ShopSchedule.where(shop_schedule_date: @schedule_date, shop_schedule_time_cd: @schedule_time)
@@ -84,7 +84,7 @@ class User::ActivitiesController < User::Base
     end
 
     def edit
-        @user = User.find(params[:partner_user_id]) #相手の情報
+        @user = User.find_by(id: params[:partner_user_id], disabled_at: nil) #相手の情報
         if current_user.gender_cd == "男性" #ログインユーザが男性の場合
             @activity = Activity.includes(:male_user, :female_user, :shop).find_by(male_user_id: current_user.id, female_user_id: @user.id)
             if @activity.matching_date == Date.today
