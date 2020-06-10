@@ -73,7 +73,7 @@
         <% elsif @activity.male_matching_at == nil && @activity.female_matching_at != nil %>
             <%# ログインユーザが男性の場合 %>   
             <% if current_user.gender_cd == "男性" %>
-                <%= form_with url: update_action_path(@user.id), method: :patch, local: true do |f| %>
+                <%= form_with url: update_activity_path(@user.id), method: :patch, local: true do |f| %>
                     <%= f.submit 'お相手から', class: 'like_btn' %>
                 <% end %>
             <%# ログインユーザが女性の場合 %>

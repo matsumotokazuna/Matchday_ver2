@@ -66,21 +66,11 @@
                 <td class="col-sm-10">
                 <%# デート予約前の場合 %>
                 <% if @activity.matching_date == nil %>
-                    <% if @male_schedules == [] or @female_schedules == [] %>
+                    <% if @schedule_date == nil %>
                         <p>合致するデートの日程がありません。あなたの予定を登録してください</p>
                         <%= link_to '自分の予定を登録する', user_schedules_path, class:"btn btn-primary" %>
                     <% else %>
-                    <% roop_end = false %>
-                    <% @male_schedules.each do |male_schedule| %>
-                        <% @female_schedules.each do |female_schedule| %>
-                            <% if male_schedule.user_schedule_date == female_schedule.user_schedule_date && male_schedule.user_schedule_time_cd == female_schedule.user_schedule_time_cd %>
-                                <%= male_schedule.user_schedule_date.strftime('%Y年%m月%d日') %><%= male_schedule.user_schedule_time_cd %>
-                            <% roop_end = true %>
-                            <% break %>
-                            <% end %>
-                        <% end %>
-                        <% break if roop_end %>
-                    <% end %>
+                        <%= @schedule_date.strftime('%Y年%m月%d日') %><%= @schedule_time %>
                     <% end %>
                 <%# デート開催待ちの場合 %>
                 <% elsif @activity.matching_date >= Date.today %>
@@ -98,7 +88,7 @@
                 <th>場所</th>
                 <td>
                     <%= form_for(@activity, url: activity_path(@activity.id)) do |f| %>
-                        <%= f.collection_select :shop_id, @shops, :id, :shop_name %>
+                        <%= f.collection_select :shop_id, @shops, :shop_id, :full_shop_address %>
                 </td>
             </tr>
         </table>
