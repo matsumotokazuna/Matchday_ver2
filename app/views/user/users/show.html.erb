@@ -136,9 +136,9 @@
         <%# デート開催日時が今日より前の日付 %>
         <% elsif @activity.matching_date < Date.today %>
             <div class='user_show_btn_already'>
-                        <div class="user_show_font_already">
-                            <p>デート済み</p>
-                        </div>
+                <div class="user_show_font_already">
+                    <p>デート済み</p>
+                </div>
             </div>
         <% else %>
         <% end %>
