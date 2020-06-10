@@ -1,4 +1,5 @@
 class User::SearchController < User::Base
+    before_action :authenticate_user!
     def search
         @search_prefecture = params[:search_prefecture]
         unless params[:min_age] == ""

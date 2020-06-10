@@ -1,4 +1,5 @@
 class Admin::ActivitiesController < Admin::Base
+    before_action :authenticate_admin!
     def index
         @activities = Activity.all.includes(:male_user, :female_user)
     end

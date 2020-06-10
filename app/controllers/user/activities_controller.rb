@@ -1,4 +1,5 @@
 class User::ActivitiesController < User::Base
+    before_action :authenticate_user!
     def from_partner
         if current_user.gender_cd == "男性" #ログインユーザが男性の場合
             @activities = Activity.where(male_matching_at: nil, male_user_id: current_user.id).includes(:female_user)

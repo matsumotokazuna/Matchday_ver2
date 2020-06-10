@@ -1,4 +1,5 @@
 class Admin::ShopSchedulesController < Admin::Base
+    before_action :authenticate_admin!
     def index
         @shop = Shop.find(params[:shop_id])
         @shop_schedules = ShopSchedule.where(shop_id: @shop.id)
