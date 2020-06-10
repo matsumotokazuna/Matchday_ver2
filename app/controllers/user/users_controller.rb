@@ -2,15 +2,15 @@ class User::UsersController < User::Base
     def index
         @user = current_user
         if @user.gender_cd == "男性"
-            @users = User.where(gender_cd: "女性") 
-        elsif @usgiter.gender_cd == "女性"
-            @users = User.where(gender_cd: "男性")
+            @users = User.where(gender_cd: "女性", disabled_at: nil) 
+        elsif @user.gender_cd == "女性"
+            @users = User.where(gender_cd: "男性", disabled_at: nil)
         else
         end
     end
 
     def show
-        @user = User.find(params[:id])
+        @user = User.find_by(id: params[:id], disabled_at: nil)
         if current_user.gender_cd == "男性" && @user.gender_cd == "男性"
             redirect_back(fallback_location: root_path)
         elsif current_user.gender_cd == "女性" && @user.gender_cd == "女性" 

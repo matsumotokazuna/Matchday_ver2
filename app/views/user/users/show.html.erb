@@ -125,7 +125,7 @@
                     <% end %>
             <%# ログインユーザが女性の場合 %>
                 <% else %>
-                    <%= link_to(show_activities_path(@activity.female_user.id)) do %>
+                    <%= link_to(show_activities_path(@activity.male_user.id)) do %>
                         <div class='user_show_btn_wait'>
                             <div class="user_show_btn_wait">
                                 <p>デート待ち</p>
