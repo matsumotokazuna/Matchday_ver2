@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>メールアドレス変更</h2>
+    </div>
+    <%= form_for(@user, url: settings_email_path) do |f| %>
+    <div class="col-sm-5">
+        <table class="table table-border-less">
+            <tr>
+                <th><%= f.label :メールアドレス %></th>
+                <td><%= f.email_field :email %></td>
+            </tr>
+        </table>
+        <%= f.submit "変更", class:"btn btn-primary btn-block" %>
+    </div>
+    <% end %>
+    </div>
+</div>

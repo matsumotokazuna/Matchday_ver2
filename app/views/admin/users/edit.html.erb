@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>プロフィール編集</h2>
+    </div>
+    <%= form_for(@user, url: admin_user_path(@user.id)) do |f| %>
+    <div class="col-sm-5">
+        <table class="table">
+            <tr>
+                <th><%= f.label :写真 %></th>
+                <td><%= f.attachment_field :user_image %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :ニックネーム %></th>
+                <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :メールアドレス %></th>
+                <td><%= f.email_field :email %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :生年月日 %></th>
+                <td><%= f.date_select :birth_date, use_month_numbers: true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :都道府県 %></th>
+                <td><%= f.select :prefecture_cd, User.prefecture_cds.keys %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :職種 %></th>
+                <td><%= f.select :job_cd, User.job_cds.keys, :include_blank => true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :身長 %></th>
+                <td><%= f.select :height_cd, User.height_cds.keys, :include_blank => true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :年収 %></th>
+                <td><%= f.select :income_cd, User.income_cds.keys, :include_blank => true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :婚姻歴 %></th>
+                <td><%= f.select :marriage_history_cd, User.marriage_history_cds.keys, :include_blank => true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :結婚に対する意思 %></th>
+                <td><%= f.select :marriage_purpose_cd, User.marriage_purpose_cds.keys, :include_blank => true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :同居人 %></th>
+                <td><%= f.select :housemate_cd, User.housemate_cds.keys, :include_blank => true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :休日 %></th>
+                <td><%= f.select :holiday_cd, User.holiday_cds.keys, :include_blank => true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :お酒 %></th>
+                <td><%= f.select :alcohol_cd, User.alcohol_cds.keys, :include_blank => true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :タバコ %></th>
+                <td><%= f.select :cigaret_cd, User.cigaret_cds.keys, :include_blank => true %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :自己紹介 %></th>
+                <td><%= f.text_area :introduction %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :退会日時 %></th>
+                <td><%= f.date_select :disabled_at, use_month_numbers: true, :include_blank => true %></td>
+            </tr>
+        </table>
+        <%= f.submit "編集", class:"btn btn-primary btn-block" %>
+    </div>
+    <% end %>
+    </div>
+</div>

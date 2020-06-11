@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>会員詳細</h2>
+    </div>
+    <div class="col-sm-offset-9 col-sm-2">
+        <%= link_to'編集', edit_admin_user_path(@user.id), class:'btn btn-primary btn-block', id:'edit-btn' %>
+    </div>
+    <div class="col-sm-4">
+    <%# プロフィール写真 %>
+        <%= attachment_image_tag @user, :user_image, :fill, 400, 500, fallback: "no_image.jpg", size:'400x500' %>
+    </div>
+    <div class="col-sm-offset-1 col-sm-6">
+    <table class="table">
+        <tr>
+            <th class="active col-sm-4">会員id<th>
+            <td><%= @user.id %></td>
+        </tr>
+        <tr>
+            <th class="active">ニックネーム<th>
+            <td><%= @user.name %></td>
+        </tr>
+        <tr>
+            <th class="active">性別<th>
+            <td><%= @user.gender_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">メールアドレス<th>
+            <td><%= @user.email %></td>
+        </tr>
+        <tr>
+            <th class="active">生年月日<th>
+            <td><%= @user.birth_date %></td>
+        </tr>
+        <tr>
+            <th class="active">都道府県<th>
+            <td><%= @user.prefecture_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">職種<th>
+            <td><%= @user.job_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">身長<th>
+            <td><%= @user.height_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">年収<th>
+            <td><%= @user.income_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">婚姻歴<th>
+            <td><%= @user.marriage_history_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">結婚に対する意思<th>
+            <td><%= @user.marriage_purpose_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">同居人<th>
+            <td><%= @user.housemate_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">休日<th>
+            <td><%= @user.holiday_cd %></td>
+        </tr>        
+        <tr>
+            <th class="active">お酒<th>
+            <td><%= @user.alcohol_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">タバコ<th>
+            <td><%= @user.cigaret_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">自己紹介<th>
+            <td><%= @user.introduction %></td>
+        </tr>
+    </table>
+    </div>
+    <div class="col-sm-offset-5 col-sm-6">
+    <table class="table">
+        <tr>
+            <th class="active col-sm-4">登録日時<th>
+            <td><%= @user.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+        </tr>
+        <tr>
+            <th class="active">更新日時<th>
+            <td><%= @user.updated_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+        </tr>
+        <tr>
+            <th class="active">退会日時<th>
+            <td>                    
+            <% if @user.disabled_at != nil %>
+                <%= @user.disabled_at.strftime('%Y-%m-%d %H:%M:%S') %>
+            <% end %>
+            </td>
+        </tr>
+    </table>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>退会</h2>
+    </div>
+    <%= form_for(@user, url: settings_withdraw_path) do |f| %>
+    <div class="col-sm-5">
+        <table class="table table-border-less">
+            <tr>
+                <th>本当に退会しますか？</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="col-sm-6"><%= link_to "キャンセル", users_path, class:"btn btn-primary btn-block" %></th>
+                <th class="col-sm-6"><%= f.submit "退会", class:"btn btn-danger btn-block" %></th>
+            </tr>
+        </table>
+    </div>
+    <% end %>
+    </div>
+</div>

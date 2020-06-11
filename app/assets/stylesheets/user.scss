@@ -1,0 +1,106 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree ./user
+ *= require_self
+ */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+* {
+    /*  リセット用CSS  */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Monotype Corsiva';
+}
+
+.page_title{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.common_margin{
+    height: 50px;
+}
+
+footer{
+    margin-top: auto;
+    height: 150px;
+    background-color: #F0F0F0;
+    color: #808080;
+}
+
+.copyright{
+    margin-top: 80px;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.user-header {
+    padding: 20px 4% 15px;
+    width: 100%;
+    background-color: #FA6A8D;
+}
+
+.user-header a{
+    color: white;
+}
+
+.table-border-less table {
+    border-style:none!important;
+}
+
+.table-border-less th {
+    border-style:none!important;
+}
+
+.table-border-less td {
+    border-style:none!important;
+}
+
+.user_box{
+    float: left;
+    margin-bottom: 30px;
+    border: 1px solid;
+    border-color: #EEEDED;
+}
+
+.user_box:not(:nth-child(4n+2)){
+    margin-right: 40px;
+
+}
+
+.user_male_name{
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+    color: #386EFF;
+}
+
+.user_female_name{
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+    color: #FA6A8D;
+}
+
+.user_profile{
+    font-size: 15px;
+    margin-top: 5px;
+    padding-bottom: 10px;
+    text-align: center;
+}

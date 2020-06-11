@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  user_schedule_date: 2020-06-02
+  user_schedule_time_cd: 1
+
+two:
+  user_id: 1
+  user_schedule_date: 2020-06-02
+  user_schedule_time_cd: 1

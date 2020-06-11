@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2>活動編集</h2>
+    </div>
+    <div>
+    <table class="table">
+        <tr>
+            <th class="active col-sm-2"><th>
+            <td class="col-sm-5"><%= attachment_image_tag @activity.male_user, :user_image, :fill, 300, 400, fallback: "no_image.jpg", size:'300x400' %></td>
+            <td class="col-sm-5"><%= attachment_image_tag @activity.female_user, :user_image, :fill, 300, 400, fallback: "no_image.jpg", size:'300x400' %></td>
+        </tr>
+        <tr>
+            <th class="active">会員id<th>
+            <td><%= @activity.male_user.id %></td>
+            <td><%= @activity.female_user.id %></td>
+        </tr>
+        <tr>
+            <th class="active">ニックネーム<th>
+            <td><%= @activity.male_user.name %></td>
+            <td><%= @activity.female_user.name %></td>
+        </tr>
+        <tr>
+            <th class="active">性別<th>
+            <td><%= @activity.male_user.gender_cd %></td>
+            <td><%= @activity.female_user.gender_cd %></td>
+        </tr>
+        <tr>
+            <th class="active">年齢<th>
+            <td>
+                <% birthdate = @activity.male_user.birth_date%>
+                <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+            </td>
+            <td>
+                <% birthdate = @activity.female_user.birth_date%>
+                <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+            </td>
+        </tr>
+        <tr>
+            <th class="active">都道府県<th>
+            <td><%= @activity.male_user.prefecture_cd %></td>
+            <td><%= @activity.female_user.prefecture_cd %></td>
+        </tr>
+    </table>
+    </div>
+    <div>
+    <table class="table">
+        <tr>
+            <th class="active col-sm-2">いいね送信日時<th>
+            <td class="col-sm-5">
+                <% if @activity.male_matching_at != nil %>
+                    <%= @activity.male_matching_at.strftime('%Y-%m-%d %H:%M:%S') %>
+                <% end %>
+            </td>
+            <td class="col-sm-5">
+                <% if @activity.female_matching_at != nil %>
+                    <%= @activity.female_matching_at.strftime('%Y-%m-%d %H:%M:%S') %>
+                <% end %>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div>
+    <table class="table">
+        <tr>
+            <th class="active col-sm-2">いいね成立日時<th>
+            <td class="col-sm-10">
+                <% if @activity.matching_at != nil %>
+                    <%= @activity.matching_at.strftime('%Y-%m-%d %H:%M:%S') %>
+                <% end %>
+            </td>
+        </tr>
+    </table>
+    <% if @activity.matching_date != nil %>
+    <table class="table">
+        <tr>
+            <th class="active col-sm-2">デート日時<th>
+            <td class="col-sm-10"><%= @activity.matching_date %><%= @activity.matching_time_cd %></td>
+        </tr>
+        <tr>
+            <th class="active col-sm-2">デート場所<th>
+            <td class="col-sm-10">
+                <%= form_for(@activity, url: admin_activity_path(@activity.id)) do |f| %>
+                    <%= f.collection_select :shop_id, @shops, :id, :shop_name %>
+            </td>
+        </tr>
+    </table>
+                <%= f.submit "編集する", class:"btn btn-primary" %>
+                <% end %>
+            <%= link_to 'キャンセルする', admin_activity_path(@activity.id), class:'btn btn-danger', method: :delete %>
+    <% end %>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,147 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+    <h2><%= @user.name %>さんのプロフィール</h2>
+    </div>
+
+    <div class="col-sm-offset-4 col-sm-4">
+        <%# プロフィール写真 %>
+            <%= attachment_image_tag @user, :user_image, :fill, 400, 500, fallback: "no_image.jpg", size:'400x500' %>
+        <%# ニックネーム %>
+            <div class="setting_name">
+                <%= @user.name %>
+            </div>
+        <%# 生年月日から年齢を計算 %>
+            <div class="setting_profile">
+                <% birthdate = @user.birth_date%>
+                <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+        <%# 都道府県 %>
+                <%= @user.prefecture_cd %>
+            </div>
+    </div>
+    <div class="col-sm-offset-4 col-sm-4">
+        <table class="table table-border-less">
+            <tr>
+                <th>職種</th>
+                <td><%= @user.job_cd %></td>
+            </tr>
+            <tr>
+                <th>身長</th>
+                <td><%= @user.height_cd %></td>
+            </tr>
+            <tr>
+                <th>年収</th>
+                <td><%= @user.income_cd %></td>
+            </tr>
+            <tr>
+                <th>婚姻歴</th>
+                <td><%= @user.marriage_history_cd %></td>
+            </tr>
+            <tr>
+                <th>結婚に対する意思</th>
+                <td><%= @user.marriage_purpose_cd %></td>
+            </tr>
+            <tr>
+                <th>同居人</th>
+                <td><%= @user.housemate_cd %></td>
+            </tr>
+            <tr>
+                <th>休日</th>
+                <td><%= @user.holiday_cd %></td>
+            </tr>
+            <tr>
+                <th>お酒</th>
+                <td><%= @user.alcohol_cd %></td>
+            </tr>
+            <tr>
+                <th>タバコ</th>
+                <td><%= @user.cigaret_cd %></td>
+            </tr>
+            <tr>
+                <th>自己紹介</th>
+                <td><%= @user.introduction %></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-offset-4 col-sm-4">
+        <%# 男性いいね送信日時がnil、女性いいね送信日時がnil %>
+        <% if @activity == nil %>
+            <%= form_with url: create_activity_path(@user.id), local: true do |f| %>
+                <%= f.submit 'いいね', class: 'like_btn' %>
+            <% end %>
+        <%# 男性いいね送信日時がnil、女性いいね送信日時がnilではない %>
+        <% elsif @activity.male_matching_at == nil && @activity.female_matching_at != nil %>
+            <%# ログインユーザが男性の場合 %>   
+            <% if current_user.gender_cd == "男性" %>
+                <%= form_with url: update_activity_path(@user.id), method: :patch, local: true do |f| %>
+                    <%= f.submit 'お相手から', class: 'like_btn' %>
+                <% end %>
+            <%# ログインユーザが女性の場合 %>
+            <% else %>
+                <div class='lile_btn_gray'><div class="lile_font_gray"><p>いいね</p></div></div>
+            <% end %>
+        <%# 男性いいね送信日時がnilではない、女性いいね送信日時がnil %>
+        <% elsif @activity.male_matching_at != nil && @activity.female_matching_at == nil %>
+            <%# ログインユーザが男性の場合 %> 
+            <% if current_user.gender_cd == "男性" %>
+                <div class='lile_btn_gray'><div class="lile_font_gray"><p>いいね</p></div></div>
+            <%# ログインユーザが女性の場合 %>
+            <% else %>
+                <%= form_with url: update_activity_path(@user.id), method: :patch, local: true do |f| %>
+                    <%= f.submit 'お相手から', class: 'like_btn' %>
+                <% end %>
+            <% end %>
+        <%# いいね成立日時がnilではない、デート開催日がnil %>
+        <% elsif @activity.matching_at != nil && @activity.matching_date == nil %>
+            <%# ログインユーザが男性の場合 %> 
+                <% if current_user.gender_cd == "男性" %>
+                    <%= link_to(show_activities_path(@activity.female_user.id)) do %>
+                        <div class='user_show_btn_reserve'>
+                            <div class="user_show_font_reserve">
+                                <p>デート予約</p>
+                            </div>
+                        </div>
+                    <% end %>
+            <%# ログインユーザが女性の場合 %>
+                <% else %>
+                    <%= link_to(show_activities_path(@activity.male_user.id)) do %>
+                        <div class='user_show_btn_reserve'>
+                            <div class="user_show_font_reserve">
+                                <p>デート予約</p>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+        <%# デート開催日時が今日以降の日付 %>
+        <% elsif @activity.matching_date >= Date.today %>
+             <%# ログインユーザが男性の場合 %> 
+                <% if current_user.gender_cd == "男性" %>
+                    <%= link_to(show_activities_path(@activity.female_user.id)) do %>
+                        <div class='user_show_btn_wait'>
+                            <div class="user_show_btn_wait">
+                                <p>デート待ち</p>
+                            </div>
+                        </div>
+                    <% end %>
+            <%# ログインユーザが女性の場合 %>
+                <% else %>
+                    <%= link_to(show_activities_path(@activity.male_user.id)) do %>
+                        <div class='user_show_btn_wait'>
+                            <div class="user_show_btn_wait">
+                                <p>デート待ち</p>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+        <%# デート開催日時が今日より前の日付 %>
+        <% elsif @activity.matching_date < Date.today %>
+            <div class='user_show_btn_already'>
+                <div class="user_show_font_already">
+                    <p>デート済み</p>
+                </div>
+            </div>
+        <% else %>
+        <% end %>
+    </div>
+    </div>
+</div>

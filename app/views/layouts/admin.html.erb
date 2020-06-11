@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>admin</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
+  </head>
+<body>
+<div class="wrapper">
+<% content_for :content do %>
+  <%= render 'layouts/admin/header' %> 
+  <%= yield %>
+  <div class="common_margin"></div>
+  <%= render 'layouts/admin/footer' %>
+<% end %>
+<%= render template: "layouts/application" %>
+</div>
+</body>
+</html>

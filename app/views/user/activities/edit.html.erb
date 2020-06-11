@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+    <div class="page_title">
+        <h2>デート編集</h2>
+    </div>
+        <div class="col-sm-offset-2 col-sm-8">
+        <table class="table table-border-less">
+            <tr>
+                <td class="col-sm-4">
+                    <div class="user_image">
+                        <%= link_to (user_path(@activity.male_user.id)) do %>
+                            <%= attachment_image_tag @activity.male_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                        <% end %>
+                    </div>
+                </td>
+                <td class="col-sm-4">
+                    <div class="user_image">
+                        <%= link_to (user_path(@activity.female_user.id)) do %>
+                            <%= attachment_image_tag @activity.female_user, :user_image, :fill, 250, 350, fallback: "no_image.jpg", size:'250x350' %>
+                        <% end %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="date_show_male_name">
+                        <%= @activity.male_user.name %>
+                    </div>
+                </td>
+                <td>
+                    <div class="date_show_female_name">
+                        <%= @activity.female_user.name %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="date_show_profile">
+                        <% birthdate = @activity.male_user.birth_date%>
+                        <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                        <%= @activity.male_user.prefecture_cd %>
+                    </div>
+                </td>
+                <td>
+                    <div class="date_show_profile">
+                        <% birthdate = @activity.female_user.birth_date%>
+                        <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                        <%= @activity.female_user.prefecture_cd %>
+                    </div>
+                </td>
+            <tr>
+        </table>
+        </div>
+        <div class="col-sm-offset-2 col-sm-8">
+        <table class="table table-border-less">
+            <tr>
+                <th class="col-sm-2">日時</th>
+                <td class="col-sm-10">
+                    <%= @activity.matching_date.strftime('%Y年%m月%d日') %><%= @activity.matching_time_cd %>
+                </td>
+            </tr>
+            <tr>
+                <th>場所</th>
+                <td>
+                    <%= form_for(@activity, url: activity_path(@activity.id)) do |f| %>
+                        <%= f.collection_select :shop_id, @shops, :id, :full_shop_address %>
+                </td>
+            </tr>
+        </table>
+            <div class="date_edit_info">
+                <p>※デート開催日の前日まで変更・キャンセル可能です。</p>
+            </div>
+            <div class="date_edit_btn">
+                <%= f.submit "編集する", class:"btn btn-primary" %>
+                <% end %>
+                <%= link_to 'キャンセルする', activity_path(@activity.id), class:'btn btn-danger', method: :delete %>
+            </div>
+        </div>
+    </div>
+</div>
