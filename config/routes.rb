@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   scope module: :user do
     root to: 'homes#top'
+    get '/about' => 'homes#about'
     resources :users, only: [:index, :show]
     get '/settings' => 'settings#index'
     get '/settings/profile' => 'settings#settings_profile'
