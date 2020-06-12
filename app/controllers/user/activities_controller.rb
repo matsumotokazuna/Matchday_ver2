@@ -18,9 +18,9 @@ class User::ActivitiesController < User::Base
 
     def date
         if current_user.gender_cd == "男性" #ログインユーザが男性の場合
-            @activities = Activity.where.not(matching_at: nil).where(male_user_id: current_user.id).includes(:female_user, :shop)
+            @activities = Activity.where.not(matching_at: nil).where(male_user_id: current_user.id).includes(:female_user, :shop).order(matching_date: :desc)
         else #ログインユーザが女性の場合
-            @activities = Activity.where.not(matching_at: nil).where(female_user_id: current_user.id).includes(:male_user, :shop)
+            @activities = Activity.where.not(matching_at: nil).where(female_user_id: current_user.id).includes(:male_user, :shop).order(matching_date: :desc)
         end
     end
 
@@ -77,11 +77,7 @@ class User::ActivitiesController < User::Base
         @female_schedule = UserSchedule.find_by(user_id: @activity.female_user_id, user_schedule_date: @activity.matching_date, user_schedule_time_cd: @activity.matching_time_cd)
         @male_schedule.destroy
         @female_schedule.destroy
-        if current_user.gender_cd == "男性" #ログインユーザが男性の場合 
-            redirect_to show_activities_path(@activity.female_user_id)
-        else #ログインユーザが女性の場合
-            redirect_to show_activities_path(@activity.male_user_id)
-        end   
+        redirect_to activities_date_path
     end
 
     def edit
