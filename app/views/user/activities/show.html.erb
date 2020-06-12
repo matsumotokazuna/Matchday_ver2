@@ -84,6 +84,15 @@
             <% if @male_schedules == [] or @female_schedules == [] %>
         </table>            
             <% else %>
+            <% if current_user.gender_cd == "男性" %>
+            <tr>
+                <th>場所</th>
+                <td>
+                    女性がデート場所を登録中です。少々お待ちください。
+                </td>
+            </tr>
+            </table>
+            <% else %>
             <tr>
                 <th>場所</th>
                 <td>
@@ -96,6 +105,7 @@
                 <%= f.submit "デートを予約する", class:"btn btn-primary" %>
             <% end %>
             </div>
+            <% end %>
             <% end %>
         <%# デート開催待ちの場合 %>
         <% elsif @activity.matching_date >= Date.today %>
