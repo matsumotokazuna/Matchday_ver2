@@ -22,8 +22,7 @@
                 <td><%= user.name %></td>
                 <td><%= user.gender_cd %></td>
                 <td>
-                    <% birthdate = user.birth_date%>
-                    <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                    <%= get_age(user.birth_date) %>歳
                 </td>
                 <td><%= user.prefecture_cd %></td>
                 <td>
