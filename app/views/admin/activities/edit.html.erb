@@ -28,12 +28,10 @@
         <tr>
             <th class="active">年齢<th>
             <td>
-                <% birthdate = @activity.male_user.birth_date%>
-                <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                <%= get_age(@activity.male_user.birth_date) %>歳
             </td>
             <td>
-                <% birthdate = @activity.female_user.birth_date%>
-                <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                <%= get_age(@activity.female_user.birth_date) %>歳
             </td>
         </tr>
         <tr>
