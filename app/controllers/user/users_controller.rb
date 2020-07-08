@@ -2,12 +2,7 @@ class User::UsersController < User::Base
     before_action :authenticate_user!
     def index
         @user = current_user
-        if @user.gender_cd == "男性"
-            @users = User.where(gender_cd: "女性", disabled_at: nil) 
-        elsif @user.gender_cd == "女性"
-            @users = User.where(gender_cd: "男性", disabled_at: nil)
-        else
-        end
+        @users = User.opposite(@user.gender_cd)
     end
 
     def show
