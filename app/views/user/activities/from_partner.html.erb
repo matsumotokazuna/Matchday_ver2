@@ -15,10 +15,9 @@
                     <div class="user_female_name">
                         <%= activity.female_user.name %>
                     </div>
-                <%# 生年月日から年齢を計算 %>
+                <%# 年齢 %>
                     <div class="user_profile">
-                        <% birthdate = activity.female_user.birth_date%>
-                        <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                        <%= get_age(activity.female_user.birth_date) %>歳
                 <%# 都道府県 %>
                         <%= activity.female_user.prefecture_cd %>
                     </div>
@@ -36,10 +35,9 @@
                     <div class="user_male_name">
                         <%= activity.male_user.name %>
                     </div>
-                <%# 生年月日から年齢を計算 %>
+                <%# 年齢 %>
                     <div class="user_profile">
-                        <% birthdate = activity.male_user.birth_date%>
-                        <%= (Date.today.strftime("%Y%m%d").to_i - birthdate.strftime("%Y%m%d").to_i) / 10000 %>歳
+                        <%= get_age(activity.male_user.birth_date) %>歳
                 <%# 都道府県 %>
                         <%= activity.male_user.prefecture_cd %>
                     </div>

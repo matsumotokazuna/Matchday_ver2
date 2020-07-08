@@ -58,7 +58,9 @@ class User < ApplicationRecord
     吸わない:1,吸う:2,ときどき吸う:3,非喫煙者の前では吸わない:4,相手が嫌ならやめる:5,電子たばこを吸う:6
   }
 
-  def self.search(prefecture_cd,min_age,max_age)
+  def self.search(prefecture_cd,search_min_age,search_max_age)
+      min_age = Date.today.strftime("%Y%m%d").to_i - search_min_age.to_i * 10000
+      max_age = Date.today.strftime("%Y%m%d").to_i - search_max_age.to_i * 10000
       if prefecture_cd == ""
         User.where( birth_date: "#{max_age}".."#{min_age}" )
       else
@@ -68,6 +70,14 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     super && (self.disabled_at == nil )
+  end
+  
+  def self.opposite(gender)
+    if gender == "男性"
+      User.where(gender_cd: "女性", disabled_at: nil)
+    else
+      User.where(gender_cd: "男性", disabled_at: nil)
+    end
   end
 
 end
