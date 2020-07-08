@@ -19,8 +19,4 @@ class Shop < ApplicationRecord
     有効:false,無効:true
   }
 
-  def full_shop_address
-    self.shop_name + "　" + self.prefecture_cd + self.city + self.building
-  end
-
 end
