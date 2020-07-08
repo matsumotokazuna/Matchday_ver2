@@ -15,9 +15,9 @@ window.onload = function(){
     }
 
     // user_schedules_json取得
-    var userscheJson = $('.user_schedules_json').val();
+    let userscheJson = $('.user_schedules_json').val();
     // パースし配列にする
-    var usersches = JSON.parse(userscheJson);
+    let usersches = JSON.parse(userscheJson);
 
 function showCalendar(year, month) {
     for ( i = 0; i < config.show; i++) {
